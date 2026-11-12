@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Acua Piscinas · Piletas de fibra y hormigón en Córdoba</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:#0A2A5E;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#1565C0;text-decoration:none}
+a:hover{color:#19C3E6}
+input,select,textarea,button{font-family:inherit}
+@keyframes acuaWave{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes acuaRise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.8}100%{transform:translateY(-90vh) scale(1.1);opacity:0}}
+@keyframes acuaFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(-.5deg)}}
+@keyframes acuaPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 12px 30px -8px rgba(0,0,0,.35)}100%{box-shadow:0 0 0 20px rgba(37,211,102,0),0 12px 30px -8px rgba(0,0,0,.35)}}
+@keyframes acuaShine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(220%)}}
+@keyframes acuaZoom{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes acuaTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s ease, box-shadow .35s ease, padding .35s ease;background:{{ navBg }};box-shadow:{{ navShadow }};padding:{{ navPad }}">
+  <div style="max-width:1240px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <a href="#inicio" style="display:flex;align-items:center;flex:none"><img src="img/logo-acua-header.png" alt="Acua Piscinas" style="width:auto;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35));transition:height .35s cubic-bezier(.2,.7,.2,1);height:{{ logoH }}"></a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;align-items:center;gap:28px">
+        <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="6">
+          <a href="{{ l.href }}" style="color:#fff;font-weight:600;font-size:15px;letter-spacing:.01em;white-space:nowrap" style-hover="color:#19C3E6">{{ l.label }}</a>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#E4202E;color:#fff;font-weight:800;font-size:14px;padding:12px 20px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(228,32,46,.8);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#fff">Pedir presupuesto</a>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menú" style="width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(10,42,94,.5);color:#fff;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center">{{ menuIcon }}</button>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ menuVisible }}" hint-placeholder-val="{{ false }}">
+    <nav style="margin:12px 16px 0;background:#0A2A5E;border-radius:18px;padding:10px;display:flex;flex-direction:column;box-shadow:0 20px 40px -10px rgba(0,0,0,.5)">
+      <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" onClick="{{ closeMenu }}" style="color:#fff;font-weight:700;font-size:18px;padding:14px 16px;border-radius:12px" style-hover="background:rgba(25,195,230,.15);color:#fff">{{ l.label }}</a>
+      </sc-for>
+    </nav>
+  </sc-if>
+</header>
+
+<section id="inicio" data-screen-label="Hero" style="position:relative;min-height:100vh;min-height:100svh;background:#0A2A5E;color:#fff;overflow:hidden;display:flex;flex-direction:column">
+  <div style="position:absolute;inset:0">
+    <img src="img/hero-piscina.png" alt="Piscina moderna con muro de piedra" style="width:100%;height:100%;object-fit:cover;display:block">
+  </div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg, rgba(10,42,94,.97) 0%, rgba(10,42,94,.9) 38%, rgba(10,42,94,.55) 70%, rgba(21,101,192,.35) 100%)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 50% at 85% 20%, rgba(25,195,230,.35), transparent 70%)"></div>
+  {{ bubbles }}
+  <div style="position:relative;flex:1;max-width:1240px;width:100%;margin:0 auto;padding:180px 20px 120px;display:flex;align-items:center;gap:48px;flex-wrap:wrap;pointer-events:none">
+    <div style="flex:1 1 520px;display:flex;flex-direction:column;gap:26px;pointer-events:auto">
+      <div data-reveal="up" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(25,195,230,.16);border:1px solid rgba(25,195,230,.45);color:#9EE9F8;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px"><span style="width:8px;height:8px;border-radius:50%;background:#19C3E6"></span>Córdoba capital</span>
+        <span style="color:rgba(255,255,255,.75);font-size:14px;font-weight:600">Av. Ricardo Rojas 8993</span>
+      </div>
+      <h1 style="margin:0;font-weight:900;font-stretch:120%;text-transform:uppercase;font-size:clamp(44px,8.4vw,104px);line-height:.9;letter-spacing:-.01em;display:flex;flex-direction:column">
+        <span data-reveal="up" data-delay="80">Piletas que</span>
+        <span data-reveal="up" data-delay="160">entran en</span>
+        <span data-reveal="up" data-delay="240" style="color:#19C3E6">tu patio</span>
+      </h1>
+      <p data-reveal="up" data-delay="320" style="margin:0;max-width:560px;font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:rgba(255,255,255,.86);text-wrap:pretty">Vendemos e instalamos piscinas de fibra de vidrio y de hormigón en Córdoba. Elegí tu modelo, probalo a escala en tu patio y pedinos presupuesto por WhatsApp.</p>
+      <div data-reveal="up" data-delay="400" style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#catalogo" style="display:inline-flex;align-items:center;gap:10px;background:#19C3E6;color:#0A2A5E;font-weight:800;font-size:16px;padding:17px 28px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(25,195,230,.9);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#0A2A5E">Ver catálogo <span style="font-size:18px">→</span></a>
+        <a href="#patio" style="display:inline-flex;align-items:center;gap:10px;border:2px solid rgba(255,255,255,.45);color:#fff;font-weight:700;font-size:16px;padding:15px 26px;border-radius:999px;backdrop-filter:blur(6px);background:rgba(255,255,255,.06);transition:background .2s ease" style-hover="background:rgba(255,255,255,.16);color:#fff">¿Qué pileta entra en mi patio?</a>
+      </div>
+      <div data-reveal="up" data-delay="480" style="display:flex;gap:28px;flex-wrap:wrap;padding-top:10px">
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:900;font-stretch:115%;font-size:20px;text-transform:uppercase">Fibra de vidrio</span><span style="font-size:14px;color:rgba(255,255,255,.7)">Modelos listos para instalar</span></div>
+        <div style="width:1px;background:rgba(255,255,255,.2)"></div>
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:900;font-stretch:115%;font-size:20px;text-transform:uppercase">Hormigón</span><span style="font-size:14px;color:rgba(255,255,255,.7)">A la medida de tu terreno</span></div>
+      </div>
+    </div>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div data-reveal="scale" data-delay="300" style="flex:0 1 420px;pointer-events:auto">{{ heroCard }}</div>
+    </sc-if>
+  </div>
+  <div style="position:relative;margin-top:auto">{{ waveHero }}</div>
+</section>
+
+<section id="tipos" data-screen-label="Tipos de pileta" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Dos formas de tener tu pileta</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">¿Fibra o <span style="color:#1565C0">hormigón?</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:#3C5477;text-wrap:pretty">Las dos son para toda la familia. La diferencia está en cómo se hacen y en qué tipo de patio rinden mejor.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px">
+      <div data-reveal="up">
+        <article style="height:100%;border-radius:28px;overflow:hidden;background:#0A2A5E;color:#fff;box-shadow:0 30px 60px -30px rgba(10,42,94,.55);display:flex;flex-direction:column;transition:transform .35s ease" style-hover="transform:translateY(-6px)">
+          <div style="position:relative;height:260px">
+            <img src="img/tipo-fibra.png" alt="Piscina de fibra de vidrio" style="width:100%;height:100%;object-fit:cover;display:block">
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,#0A2A5E 100%)"></div>
+            <span style="position:absolute;top:18px;left:18px;pointer-events:none;background:#19C3E6;color:#0A2A5E;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:999px">Instalación ágil</span>
+          </div>
+          <div style="padding:8px 30px 32px;display:flex;flex-direction:column;gap:16px;flex:1">
+            <h3 style="margin:0;font-weight:900;font-stretch:115%;font-size:clamp(26px,3vw,34px);line-height:1;text-transform:uppercase">Piscinas de <span style="color:#19C3E6">fibra de vidrio</span></h3>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:rgba(255,255,255,.82);text-wrap:pretty">Se fabrican en molde y llegan listas para colocar. Convienen si buscás una medida estándar, una obra más simple y una superficie lisa que se limpia fácil.</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(25,195,230,.2);color:#19C3E6;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>24 modelos en dos líneas: EcoLine y Premium</div>
+              <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(25,195,230,.2);color:#19C3E6;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>De 3,00 a 9,50 m de largo, con o sin solárium</div>
+              <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:rgba(25,195,230,.2);color:#19C3E6;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>Mini Piscina M con equipamiento instalado, lista para usar</div>
+            </div>
+            <a href="#catalogo" style="margin-top:auto;align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#19C3E6;color:#0A2A5E;font-weight:800;padding:14px 24px;border-radius:999px" style-hover="color:#0A2A5E;background:#5ED6F0">Ver modelos de fibra →</a>
+          </div>
+        </article>
+      </div>
+      <div data-reveal="up" data-delay="120">
+        <article style="height:100%;border-radius:28px;overflow:hidden;background:#F1F7FC;color:#0A2A5E;border:1px solid #DCE9F5;box-shadow:0 30px 60px -36px rgba(10,42,94,.35);display:flex;flex-direction:column;transition:transform .35s ease" style-hover="transform:translateY(-6px)">
+          <div style="position:relative;height:260px">
+            <img src="img/tipo-hormigon.png" alt="Piscina de hormigón" style="width:100%;height:100%;object-fit:cover;display:block">
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 40%,#F1F7FC 100%)"></div>
+            <span style="position:absolute;top:18px;left:18px;pointer-events:none;background:#0A2A5E;color:#fff;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:999px">A medida</span>
+          </div>
+          <div style="padding:8px 30px 32px;display:flex;flex-direction:column;gap:16px;flex:1">
+            <h3 style="margin:0;font-weight:900;font-stretch:115%;font-size:clamp(26px,3vw,34px);line-height:1;text-transform:uppercase">Piscinas de <span style="color:#1565C0">hormigón</span></h3>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:#3C5477;text-wrap:pretty">Se construyen en el lugar, con la forma y el tamaño que necesites. Convienen si tenés un terreno irregular, querés una pileta grande o un diseño propio.</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D6E8F8;color:#1565C0;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>Forma, largo y profundidad a elección</div>
+              <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D6E8F8;color:#1565C0;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>Terminación con revestimiento símil Bali</div>
+              <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D6E8F8;color:#1565C0;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>Se adapta a desniveles y espacios especiales</div>
+            </div>
+            <a href="{{ waHormigon }}" target="_blank" rel="noopener" style="margin-top:auto;align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#1565C0;color:#fff;font-weight:800;padding:14px 24px;border-radius:999px" style-hover="color:#fff;background:#0A2A5E">Consultar por hormigón →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo" data-screen-label="Catálogo" style="background:#F3F8FC;padding:96px 20px 64px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:32px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Catálogo de piscinas de fibra</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Elegí tu <span style="color:#1565C0">modelo</span></h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477;text-wrap:pretty">Elegí una línea, después una categoría y abrí la ficha del modelo para ver medidas, capacidad y colores.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#3C5477">1 · Línea</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px">
+        <sc-for list="{{ lineTabs }}" as="t" hint-placeholder-count="2">
+          <button onClick="{{ t.pick }}" style="text-align:left;cursor:pointer;border:2px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};box-shadow:{{ t.shadow }};border-radius:22px;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;transition:background .3s ease, color .3s ease, box-shadow .3s ease, transform .2s ease" style-hover="transform:translateY(-2px)">
+            <span style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-weight:900;font-stretch:118%;font-size:clamp(24px,3vw,32px);line-height:1;letter-spacing:.02em">{{ t.label }}</span>
+              <span style="font-size:14px;font-weight:600;color:{{ t.sub }}">{{ t.count }} · {{ t.cats }}</span>
+            </span>
+            <span style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+              <span style="display:flex;gap:6px">
+                <sc-for list="{{ t.dots }}" as="d" hint-placeholder-count="4"><span style="width:18px;height:18px;border-radius:50%;background:{{ d.hex }};box-shadow:0 0 0 2px {{ t.dotRing }}"></span></sc-for>
+              </span>
+              <span style="font-size:13px;font-weight:700;color:{{ t.sub }}">{{ t.colorsTxt }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span style="font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#3C5477">2 · Categoría de {{ lineName }}</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="4">
+          <button onClick="{{ c.pick }}" style="cursor:pointer;font-weight:800;font-size:15px;padding:11px 18px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:center;gap:8px;transition:background .2s ease, border-color .2s ease" style-hover="border-color:#19C3E6">{{ c.label }} <span style="font-size:12px;font-weight:800;background:rgba(10,42,94,.1);border-radius:999px;padding:2px 8px">{{ c.count }}</span></button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid #DCE9F5;border-radius:20px;padding:12px 16px">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span style="font-weight:800;font-size:15px;color:#0A2A5E">{{ resultTxt }}</span>
+        <span style="width:1px;height:22px;background:#DCE9F5"></span>
+        <span style="font-size:14px;font-weight:700;color:#3C5477">Colores {{ lineName }}</span>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ lineColors }}" as="c" hint-placeholder-count="4">
+            <button onClick="{{ c.pick }}" title="{{ c.name }}" aria-label="{{ c.name }}" style="width:30px;height:30px;border-radius:50%;border:3px solid #fff;cursor:pointer;background:{{ c.hex }};box-shadow:{{ c.ring }};transition:transform .2s ease" style-hover="transform:scale(1.1)"></button>
+          </sc-for>
+        </div>
+      </div>
+      <label style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#3C5477">Ordenar
+        <select onChange="{{ onSort }}" value="{{ sort }}" style="font-size:15px;font-weight:700;color:#0A2A5E;border:1px solid #DCE9F5;background:#F3F8FC;border-radius:12px;padding:10px 12px;cursor:pointer">
+          <sc-for list="{{ sorts }}" as="s" hint-placeholder-count="5"><option value="{{ s.id }}">{{ s.label }}</option></sc-for>
+        </select>
+      </label>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:22px">
+      <sc-for list="{{ catalog }}" as="m" hint-placeholder-count="6">
+        <article style="background:#fff;border-radius:24px;overflow:hidden;border:1px solid #DCE9F5;box-shadow:0 20px 40px -30px rgba(10,42,94,.45);display:flex;flex-direction:column;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -28px rgba(10,42,94,.55)">
+          <button onClick="{{ m.openFicha }}" aria-label="Ver detalles" style="position:relative;border:0;padding:0;cursor:pointer;background:#fff;aspect-ratio:16/10;overflow:hidden;display:block;width:100%">
+            <img src="{{ m.photo }}" alt="{{ m.name }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;padding:18px;transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)">
+            <span style="position:absolute;top:14px;left:14px;background:#0A2A5E;color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px">{{ m.lineName }}</span>
+          </button>
+          <div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1;border-top:1px solid #EEF4FA">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">{{ m.catName }}</span>
+              <h3 style="margin:0;font-weight:900;font-stretch:112%;font-size:26px;text-transform:uppercase;line-height:1.05;color:#0A2A5E">{{ m.name }}</h3>
+              <p style="margin:0;font-size:14px;line-height:1.5;color:#3C5477">{{ m.desc }}</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="background:#F3F8FC;border-radius:14px;padding:11px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;font-weight:700;color:#3C5477;text-transform:uppercase;letter-spacing:.08em">Medidas</span><span style="font-weight:800;font-size:16px;color:#0A2A5E">{{ m.dims }}</span></div>
+              <div style="background:#F3F8FC;border-radius:14px;padding:11px 14px;display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;font-weight:700;color:#3C5477;text-transform:uppercase;letter-spacing:.08em">{{ m.capLabel }}</span><span style="font-weight:800;font-size:16px;color:#0A2A5E">{{ m.cap }}</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="display:flex;gap:4px">
+                <sc-for list="{{ m.dots }}" as="d" hint-placeholder-count="4"><span style="width:14px;height:14px;border-radius:50%;background:{{ d.hex }};box-shadow:0 0 0 1px rgba(10,42,94,.2)"></span></sc-for>
+              </div>
+              <span style="font-size:13px;font-weight:700;color:#3C5477">{{ m.colorsTxt }}</span>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:auto">
+              <button onClick="{{ m.openFicha }}" style="flex:1;border:0;cursor:pointer;background:#1565C0;color:#fff;font-weight:800;font-size:15px;padding:14px;border-radius:999px;transition:background .2s ease" style-hover="background:#0A2A5E">Ver detalles</button>
+              <a href="{{ m.wa }}" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp" style="flex:none;width:50px;height:50px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center" style-hover="color:#fff;background:#1EBE5A"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"></path></svg></a>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{ toggleAll }}" style="align-self:center;display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;background:#0A2A5E;color:#fff;font-weight:800;font-size:16px;padding:17px 30px;border-radius:999px;box-shadow:0 14px 30px -14px rgba(10,42,94,.8);transition:transform .2s ease, background .2s ease" style-hover="transform:translateY(-2px);background:#1565C0">{{ moreLabel }}</button>
+    </sc-if>
+  </div>
+</section>
+<div>{{ waveCatalog }}</div>
+
+<section id="patio" data-screen-label="Planificador de patio" style="background:#0A2A5E;color:#fff;padding:72px 20px 72px;scroll-margin-top:70px;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(50% 40% at 10% 0%, rgba(25,195,230,.18), transparent 70%)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#19C3E6"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Planificador a escala</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase">¿Qué pileta entra <span style="color:#19C3E6">en tu patio?</span></h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.8);text-wrap:pretty">Cargá el largo y el ancho de tu patio, elegí un modelo y arrastrá la pileta hasta donde la imaginás. El contorno punteado marca el terreno mínimo que necesita (medida + 60 cm).</p>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+      <div data-reveal="left" style="flex:1 1 300px;max-width:100%;display:flex;flex-direction:column;gap:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Largo del patio</span>
+            <label style="display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border-radius:12px;padding:6px 10px;font-weight:800"><input type="number" step="0.1" min="2" max="30" value="{{ patioL }}" onChange="{{ onPatioL }}" style="width:64px;border:0;outline:0;font-size:17px;font-weight:800;color:#0A2A5E;background:transparent">m</label>
+          </div>
+          <input type="range" min="2" max="20" step="0.1" value="{{ patioL }}" onInput="{{ onPatioL }}" onChange="{{ onPatioL }}" style="width:100%;accent-color:#19C3E6;height:28px">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Ancho del patio</span>
+            <label style="display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border-radius:12px;padding:6px 10px;font-weight:800"><input type="number" step="0.1" min="2" max="30" value="{{ patioW }}" onChange="{{ onPatioW }}" style="width:64px;border:0;outline:0;font-size:17px;font-weight:800;color:#0A2A5E;background:transparent">m</label>
+          </div>
+          <input type="range" min="2" max="15" step="0.1" value="{{ patioW }}" onInput="{{ onPatioW }}" onChange="{{ onPatioW }}" style="width:100%;accent-color:#19C3E6;height:28px">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Modelo</span>
+          <select onChange="{{ onPlanModel }}" value="{{ planModel }}" style="width:100%;font-size:16px;font-weight:800;color:#0A2A5E;border:0;background:#fff;border-radius:14px;padding:14px;cursor:pointer">
+            <sc-for list="{{ modelOptions }}" as="o" hint-placeholder-count="6"><option value="{{ o.id }}">{{ o.label }}</option></sc-for>
+          </select>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Color · {{ planColorLabel }}</span>
+          <div style="display:flex;gap:10px">
+            <sc-for list="{{ planColors }}" as="c" hint-placeholder-count="4">
+              <button onClick="{{ c.pick }}" title="{{ c.name }}" aria-label="{{ c.name }}" style="width:38px;height:38px;border-radius:50%;border:3px solid #0A2A5E;cursor:pointer;background:{{ c.hex }};box-shadow:{{ c.ring }};transition:transform .2s ease" style-hover="transform:scale(1.1)"></button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;transition:background .3s ease;background:{{ status.bg }};border:1px solid {{ status.bd }}">
+          <span style="font-weight:900;font-stretch:112%;font-size:18px;text-transform:uppercase;color:{{ status.fg }}">{{ status.title }}</span>
+          <span style="font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)">{{ status.text }}</span>
+          <sc-if value="{{ status.hasSuggest }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ status.onSuggest }}" style="align-self:flex-start;border:0;cursor:pointer;background:#19C3E6;color:#0A2A5E;font-weight:800;font-size:14px;padding:10px 16px;border-radius:999px">{{ status.suggestLabel }}</button>
+          </sc-if>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button onClick="{{ centerPool }}" style="flex:1;cursor:pointer;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);font-weight:800;font-size:14px;padding:12px;border-radius:999px" style-hover="background:rgba(255,255,255,.1)">Centrar pileta</button>
+          <a href="{{ waPlan }}" target="_blank" rel="noopener" style="flex:1.4;text-align:center;background:#E4202E;color:#fff;font-weight:800;font-size:14px;padding:14px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(228,32,46,.8)" style-hover="color:#fff;background:#C81623">Pedir presupuesto</a>
+        </div>
+      </div>
+      <div data-reveal="up" data-delay="120" style="flex:3 1 480px;max-width:100%;display:flex;flex-direction:column;gap:12px">
+        <div style="background:#0D3572;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:14px;box-shadow:inset 0 0 0 1px rgba(25,195,230,.08), 0 30px 60px -30px rgba(0,0,0,.6)">{{ planSvg }}</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.72);padding:0 6px">
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border:1px solid rgba(255,255,255,.35);border-radius:3px"></span>Cuadrícula de 1 m</span>
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:0;border-top:2px dashed #19C3E6"></span>Terreno mínimo</span>
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:0;border-top:2px dashed #E4202E"></span>No entra / se sale</span>
+          <span>Arrastrá la pileta con el mouse o el dedo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div>{{ wavePlan }}</div>
+
+<section id="proceso" data-screen-label="Proceso" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:48px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Proceso de obra</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Del pozo <span style="color:#1565C0">al chapuzón</span></h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477;text-wrap:pretty">Nos ocupamos de toda la instalación. Los plazos dependen del modelo y del terreno: te los confirmamos con el presupuesto.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;position:relative">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div data-reveal="up" data-delay="{{ s.delay }}">
+          <article style="height:100%;position:relative;overflow:hidden;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:24px;padding:30px 28px;display:flex;flex-direction:column;gap:18px;transition:background .3s ease, transform .3s ease" style-hover="background:#E6F3FB;transform:translateY(-4px)">
+            <span style="position:absolute;right:-6px;top:-24px;font-weight:900;font-stretch:125%;font-size:150px;line-height:1;color:rgba(21,101,192,.07)">{{ s.n }}</span>
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="width:56px;height:56px;border-radius:18px;background:#0A2A5E;color:#19C3E6;display:flex;align-items:center;justify-content:center">{{ s.icon }}</span>
+              <span style="font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0">Etapa {{ s.n }}</span>
+            </div>
+            <h3 style="margin:0;font-weight:900;font-stretch:112%;font-size:26px;text-transform:uppercase;line-height:1.05;color:#0A2A5E">{{ s.title }}</h3>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:#3C5477;text-wrap:pretty">{{ s.text }}</p>
+          </article>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+<div>{{ waveProceso }}</div>
+
+<section id="renovaciones" data-screen-label="Renovaciones" style="background:#0A2A5E;color:#fff;padding:72px 20px 72px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;gap:48px;align-items:center;flex-wrap:wrap">
+    <div data-reveal="left" style="flex:1 1 380px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#19C3E6"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Renovaciones</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5vw,60px);line-height:.95;text-transform:uppercase">¿Cansado de <span style="color:#19C3E6">pintar tu piscina?</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:rgba(255,255,255,.84);text-wrap:pretty">Renovala con revestimiento símil Bali. Dejás atrás la pintura de cada temporada y tu pileta de hormigón queda con una terminación nueva.</p>
+      <div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:#9EE9F8"><span style="width:10px;height:10px;border-radius:50%;background:#E4202E"></span>Obra real: 10 × 5 m · Mendiolaza</div>
+      <a href="{{ waRenov }}" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#E4202E;color:#fff;font-weight:800;padding:16px 26px;border-radius:999px;box-shadow:0 12px 28px -12px rgba(228,32,46,.9)" style-hover="color:#fff;background:#C81623">Consultar renovación</a>
+    </div>
+    <div data-reveal="scale" data-delay="120" style="flex:1.3 1 440px;max-width:100%;display:flex;flex-direction:column;gap:12px">
+      <div onPointerDown="{{ baDown }}" onPointerMove="{{ baMove }}" onPointerUp="{{ baUp }}" onPointerCancel="{{ baUp }}" style="position:relative;aspect-ratio:4/3;border-radius:26px;overflow:hidden;cursor:ew-resize;touch-action:pan-y;user-select:none;box-shadow:0 40px 70px -30px rgba(0,0,0,.6);border:4px solid rgba(255,255,255,.1)">
+        <div style="position:absolute;inset:0"><img src="img/renov-despues.png" alt="Pileta renovada con revestimiento símil Bali" draggable="false" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div style="position:absolute;inset:0;clip-path:inset(0 {{ baRight }}% 0 0)">
+          <img src="img/renov-antes-real.png" alt="Pileta pintada antes de la renovación" draggable="false" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <span style="position:absolute;top:16px;left:16px;pointer-events:none;background:rgba(10,42,94,.85);color:#fff;font-weight:800;font-size:12px;letter-spacing:.14em;padding:7px 12px;border-radius:999px">ANTES</span>
+        <span style="position:absolute;top:16px;right:16px;pointer-events:none;background:#19C3E6;color:#0A2A5E;font-weight:800;font-size:12px;letter-spacing:.14em;padding:7px 12px;border-radius:999px">DESPUÉS</span>
+        <div style="position:absolute;top:0;bottom:0;width:4px;margin-left:-2px;background:#fff;pointer-events:none;box-shadow:0 0 20px rgba(0,0,0,.4);left:{{ ba }}%">
+          <div style="position:absolute;top:50%;left:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#fff;color:#0A2A5E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,.35)">◂ ▸</div>
+        </div>
+      </div>
+      <span style="font-size:13px;color:rgba(255,255,255,.65)">Deslizá para comparar el antes y el después.</span>
+    </div>
+  </div>
+</section>
+<div>{{ waveRenov }}</div>
+
+<section id="obras" data-screen-label="Obras" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Obras realizadas</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Piletas en <span style="color:#1565C0">toda Córdoba</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));grid-auto-rows:260px;gap:18px">
+      <sc-for list="{{ obras }}" as="o" hint-placeholder-count="5">
+        <div data-reveal="up" data-delay="{{ o.delay }}" style="grid-row:{{ o.rows }}">
+          <figure onClick="{{ o.open }}" style="margin:0;height:100%;position:relative;border-radius:24px;overflow:hidden;background:#EAF4FA;cursor:{{ o.cursor }};transition:transform .35s ease" style-hover="transform:scale(.985)">
+            <sc-if value="{{ o.hasImg }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ o.img }}" alt="{{ o.title }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)">
+              <span style="position:absolute;top:14px;right:14px;pointer-events:none;width:40px;height:40px;border-radius:50%;background:rgba(10,42,94,.7);backdrop-filter:blur(6px);color:#fff;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg></span>
+            </sc-if>
+            <sc-if value="{{ o.noImg }}" hint-placeholder-val="{{ false }}">
+              <image-slot id="{{ o.slot }}" shape="rect" placeholder="{{ o.ph }}"></image-slot>
+            </sc-if>
+            <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 45%,rgba(10,42,94,.92) 100%)"></div>
+            <figcaption style="position:absolute;left:18px;right:18px;bottom:16px;pointer-events:none;color:#fff;display:flex;flex-direction:column;gap:4px">
+              <sc-if value="{{ o.hasPlace }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px;color:#9EE9F8"><svg width="12" height="14" viewBox="0 0 12 14" fill="#19C3E6"><path d="M6 0a6 6 0 0 0-6 6c0 4.2 6 8 6 8s6-3.8 6-8a6 6 0 0 0-6-6zm0 8.2A2.2 2.2 0 1 1 6 3.8a2.2 2.2 0 0 1 0 4.4z"></path></svg>{{ o.place }}</span></sc-if>
+              <span style="font-weight:900;font-stretch:112%;font-size:22px;text-transform:uppercase;line-height:1.05">{{ o.title }}</span>
+              <sc-if value="{{ o.hasExtras }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;font-weight:600;color:rgba(255,255,255,.88)">{{ o.extras }}</span></sc-if>
+            </figcaption>
+          </figure>
+        </div>
+      </sc-for>
+    </div>
+    <a data-reveal="up" href="https://instagram.com/acua.piscinas" target="_blank" rel="noopener" style="align-self:center;display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:16px;color:#1565C0;border:2px solid #CFE2F5;padding:14px 24px;border-radius:999px" style-hover="border-color:#19C3E6;color:#0A2A5E">Ver más obras en Instagram · @acua.piscinas</a>
+  </div>
+</section>
+
+<section id="insumos" data-screen-label="Tienda" style="background:#F3F8FC;padding:96px 20px 72px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+      <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Tienda · Av. Ricardo Rojas 8993</div>
+        <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Insumos <span style="color:#1565C0">y limpieza</span></h2>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477;text-wrap:pretty">Todo para el mantenimiento de tu pileta y productos de limpieza para tu casa. Consultá stock y marcas por WhatsApp o pasá por el local.</p>
+      </div>
+      <div data-reveal="up" style="display:flex;background:#fff;border:1px solid #DCE9F5;border-radius:999px;padding:6px;gap:4px">
+        <sc-for list="{{ shopTabs }}" as="t" hint-placeholder-count="2">
+          <button onClick="{{ t.pick }}" style="border:0;cursor:pointer;font-weight:800;font-size:15px;padding:12px 20px;border-radius:999px;transition:background .25s ease, color .25s ease;background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
+      <sc-for list="{{ shopItems }}" as="p" hint-placeholder-count="6">
+        <article style="background:#fff;border:1px solid #DCE9F5;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(10,42,94,.5)">
+          <span style="width:46px;height:46px;border-radius:50% 0 50% 50%;transform:rotate(-45deg);background:{{ p.tint }}"></span>
+          <h3 style="margin:0;font-weight:900;font-stretch:110%;font-size:20px;text-transform:uppercase;line-height:1.1;color:#0A2A5E">{{ p.name }}</h3>
+          <p style="margin:0;font-size:15px;line-height:1.5;color:#3C5477">{{ p.desc }}</p>
+          <a href="{{ p.wa }}" target="_blank" rel="noopener" style="margin-top:auto;font-weight:800;font-size:14px;color:#1565C0;display:inline-flex;gap:6px;align-items:center" style-hover="color:#19C3E6">Consultar →</a>
+        </article>
+      </sc-for>
+    </div>
+    <span style="font-size:13px;font-weight:700;color:#E4202E">Listado de productos y marcas a completar.</span>
+  </div>
+</section>
+<div>{{ waveShop }}</div>
+
+<section id="faq" data-screen-label="Preguntas frecuentes" style="background:#0A2A5E;color:#fff;padding:72px 20px 72px;scroll-margin-top:70px">
+  <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:36px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#19C3E6"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Preguntas frecuentes<span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span></div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,60px);line-height:.95;text-transform:uppercase">Lo que <span style="color:#19C3E6">más nos preguntan</span></h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+        <div data-reveal="up" data-delay="{{ f.delay }}">
+          <div style="border-radius:20px;transition:background .3s ease;background:{{ f.bg }};border:1px solid rgba(255,255,255,.12)">
+            <button onClick="{{ f.toggle }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;background:transparent;border:0;color:#fff;cursor:pointer;padding:22px 24px;font-weight:800;font-size:clamp(17px,2vw,20px)">
+              <span>{{ f.q }}</span>
+              <span style="flex:none;width:36px;height:36px;border-radius:50%;background:#19C3E6;color:#0A2A5E;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;transition:transform .3s ease;transform:rotate({{ f.rot }}deg)">+</span>
+            </button>
+            <div style="display:grid;transition:grid-template-rows .35s ease;grid-template-rows:{{ f.rows }}">
+              <div style="overflow:hidden"><p style="margin:0;padding:0 24px 24px;font-size:16px;line-height:1.65;color:rgba(255,255,255,.82);text-wrap:pretty">{{ f.a }}</p></div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+<div>{{ waveFaq }}</div>
+
+<section id="contacto" data-screen-label="Contacto" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Contacto</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Pedí tu <span style="color:#1565C0">presupuesto</span></h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477">Completá tus datos y te abrimos WhatsApp con el mensaje listo para enviar.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px">
+      <form data-reveal="up" onSubmit="{{ onSubmit }}" style="background:#0A2A5E;color:#fff;border-radius:28px;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 60px -30px rgba(10,42,94,.6)">
+        <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Nombre
+          <input value="{{ form.nombre }}" onChange="{{ onNombre }}" required="" placeholder="Tu nombre" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0" style-focus="border-color:#19C3E6">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Localidad o barrio
+          <input value="{{ form.localidad }}" onChange="{{ onLocalidad }}" placeholder="Ej: Argüello, Mendiolaza…" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0" style-focus="border-color:#19C3E6">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Modelo de interés
+          <select value="{{ form.modelo }}" onChange="{{ onModelo }}" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0;background:#fff;cursor:pointer">
+            <sc-for list="{{ formOptions }}" as="o" hint-placeholder-count="8"><option value="{{ o }}">{{ o }}</option></sc-for>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Mensaje (opcional)
+          <textarea value="{{ form.mensaje }}" onChange="{{ onMensaje }}" rows="3" placeholder="Medidas de tu patio, dudas…" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0;resize:vertical" style-focus="border-color:#19C3E6"></textarea>
+        </label>
+        <button type="submit" style="margin-top:6px;border:0;cursor:pointer;background:#E4202E;color:#fff;font-weight:900;font-size:17px;padding:18px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(228,32,46,.9);transition:transform .2s ease" style-hover="transform:translateY(-2px)">Enviar por WhatsApp</button>
+      </form>
+      <div data-reveal="up" data-delay="120" style="display:flex;flex-direction:column;gap:16px">
+        <div style="border-radius:28px;overflow:hidden;border:1px solid #DCE9F5;height:280px;background:#EAF4FA">
+          <iframe title="Mapa Acua Piscinas" src="https://www.google.com/maps?q=Av.%20Ricardo%20Rojas%208993%2C%20C%C3%B3rdoba%2C%20Argentina&amp;output=embed" loading="lazy" style="width:100%;height:100%;border:0;display:block"></iframe>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Ricardo%20Rojas%208993%20C%C3%B3rdoba" target="_blank" rel="noopener" style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;color:#0A2A5E" style-hover="border-color:#19C3E6;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Local</span><span style="font-weight:800;font-size:17px">Av. Ricardo Rojas 8993</span><span style="font-size:14px;color:#3C5477">Córdoba capital</span></a>
+          <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;color:#0A2A5E" style-hover="border-color:#19C3E6;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">WhatsApp</span><span style="font-weight:800;font-size:17px">351 517 1412</span><span style="font-size:14px;color:#3C5477">Escribinos cuando quieras</span></a>
+          <div style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Horarios</span><span style="font-weight:800;font-size:17px;color:#E4202E">A completar</span><span style="font-size:14px;color:#3C5477">Lunes a sábado</span></div>
+          <a href="https://instagram.com/acua.piscinas" target="_blank" rel="noopener" style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;color:#0A2A5E" style-hover="border-color:#19C3E6;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Instagram</span><span style="font-weight:800;font-size:17px">@acua.piscinas</span><span style="font-size:14px;color:#3C5477">Obras y novedades</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div>{{ waveContact }}</div>
+
+<footer style="background:#0A2A5E;color:rgba(255,255,255,.75);padding:40px 20px 110px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <img src="img/logo-acua-header.png" alt="Acua Piscinas" style="height:110px;width:auto;display:block">
+      <div style="display:flex;flex-direction:column;gap:4px;font-size:14px"><span style="color:#fff;font-weight:800">Piscinas de fibra de vidrio y de hormigón</span><span>Av. Ricardo Rojas 8993, Córdoba · 351 517 1412</span></div>
+    </div>
+    <nav style="display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:600">
+      <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="6"><a href="{{ l.href }}" style="color:rgba(255,255,255,.75)" style-hover="color:#19C3E6">{{ l.label }}</a></sc-for>
+    </nav>
+    <span style="font-size:13px;width:100%;border-top:1px solid rgba(255,255,255,.12);padding-top:18px">© 2026 Acua Piscinas · Córdoba, Argentina</span>
+  </div>
+</footer>
+
+{{ waFab }}
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ lbClose }}" style="position:fixed;inset:0;z-index:90;background:rgba(6,24,56,.92);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px">
+    <button onClick="{{ lbClose }}" aria-label="Cerrar" style="position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:#0A2A5E;font-size:20px;font-weight:700;cursor:pointer">✕</button>
+    <sc-if value="{{ lbMulti }}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{ lbPrev }}" aria-label="Anterior" style="position:absolute;left:16px;top:50%;margin-top:-26px;width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:24px;cursor:pointer;z-index:2" style-hover="background:#19C3E6;color:#0A2A5E">‹</button>
+      <button onClick="{{ lbNext }}" aria-label="Siguiente" style="position:absolute;right:16px;top:50%;margin-top:-26px;width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:24px;cursor:pointer;z-index:2" style-hover="background:#19C3E6;color:#0A2A5E">›</button>
+    </sc-if>
+    {{ lbImg }}
+    <div onClick="{{ stop }}" style="max-width:900px;text-align:center;color:#fff;display:flex;flex-direction:column;gap:6px">
+      <sc-if value="{{ lb.hasPlace }}" hint-placeholder-val="{{ true }}"><span style="font-weight:700;font-size:14px;color:#9EE9F8">📍 {{ lb.place }}</span></sc-if>
+      <span style="font-weight:900;font-stretch:112%;font-size:clamp(20px,2.6vw,28px);text-transform:uppercase;line-height:1.1">{{ lb.title }}</span>
+      <sc-if value="{{ lb.hasExtras }}" hint-placeholder-val="{{ false }}"><span style="font-size:15px;color:rgba(255,255,255,.85)">{{ lb.extras }}</span></sc-if>
+      <span style="font-size:13px;color:rgba(255,255,255,.55)">{{ lbCount }}</span>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ fichaOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeFicha }}" style="position:fixed;inset:0;z-index:80;background:rgba(6,24,56,.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px">
+    <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:960px;max-height:92vh;overflow:auto;background:#fff;color:#0A2A5E;border-radius:28px;box-shadow:0 40px 100px -20px rgba(0,0,0,.6);display:flex;flex-wrap:wrap">
+      <button onClick="{{ closeFicha }}" aria-label="Cerrar" style="position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:#0A2A5E;color:#fff;font-size:20px;cursor:pointer">✕</button>
+      <div style="flex:1.2 1 420px;background:#EAF4FA;padding:28px;display:flex;flex-direction:column;gap:16px;justify-content:center">
+        <div style="background:#fff;border-radius:20px;overflow:hidden;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center"><img src="{{ ficha.photo }}" alt="{{ ficha.name }}" style="width:100%;height:100%;object-fit:contain;padding:14px;display:block"></div>
+        <span style="font-size:13px;font-weight:700;color:#3C5477">{{ ficha.photoCap }}</span>
+        <sc-if value="{{ ficha.hasThumbs }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <sc-for list="{{ ficha.thumbs }}" as="t" hint-placeholder-count="2">
+              <button onClick="{{ t.pick }}" style="width:84px;height:60px;padding:0;border-radius:12px;overflow:hidden;cursor:pointer;background:#fff;border:3px solid {{ t.bd }}"><img src="{{ t.src }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-direction:column;gap:8px;background:#fff;border-radius:20px;padding:14px">
+          <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Plano a escala · color elegido</span>
+          {{ ficha.svgBig }}
+        </div>
+      </div>
+      <div style="flex:1 1 360px;padding:32px 28px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="align-self:flex-start;background:#0A2A5E;color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px">{{ ficha.lineLabel }}</span>
+          <h3 style="margin:0;font-weight:900;font-stretch:115%;font-size:clamp(28px,3.4vw,38px);text-transform:uppercase;line-height:1">{{ ficha.name }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.55;color:#3C5477">{{ ficha.desc }}</p>
+        </div>
+        <div style="display:flex;flex-direction:column;border-top:1px solid #DCE9F5">
+          <sc-for list="{{ ficha.specs }}" as="s" hint-placeholder-count="5">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #DCE9F5">
+              <span style="font-size:14px;font-weight:700;color:#3C5477">{{ s.k }}</span>
+              <span style="display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px">{{ s.v }}
+                <sc-if value="{{ s.tag }}" hint-placeholder-val="{{ false }}"><span style="background:#FDECEE;color:#E4202E;font-size:11px;font-weight:800;letter-spacing:.04em;padding:4px 8px;border-radius:999px;text-transform:uppercase">{{ s.tag }}</span></sc-if>
+              </span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#3C5477">Color · {{ ficha.colorLabel }}</span>
+          <div style="display:flex;gap:10px">
+            <sc-for list="{{ ficha.colors }}" as="c" hint-placeholder-count="4">
+              <button onClick="{{ c.pick }}" title="{{ c.name }}" aria-label="{{ c.name }}" style="width:40px;height:40px;border-radius:50%;border:3px solid #fff;cursor:pointer;background:{{ c.hex }};box-shadow:{{ c.ring }};transition:transform .2s ease" style-hover="transform:scale(1.1)"></button>
+            </sc-for>
+          </div>
+          <span style="font-size:13px;line-height:1.45;color:#3C5477">{{ ficha.photoNote }}</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto">
+          <button onClick="{{ ficha.tryPlan }}" style="flex:1 1 160px;cursor:pointer;background:#fff;color:#1565C0;border:2px solid #CFE2F5;font-weight:800;font-size:15px;padding:14px;border-radius:999px" style-hover="border-color:#19C3E6">Probar en mi patio</button>
+          <a href="{{ ficha.wa }}" target="_blank" rel="noopener" style="flex:1 1 160px;text-align:center;background:#E4202E;color:#fff;font-weight:800;font-size:15px;padding:16px;border-radius:999px" style-hover="color:#fff;background:#C81623">Consultar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const h = React.createElement;
+const WA = '5493515171412';
+const wa = t => 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t);
+const m2 = cm => (cm / 100).toFixed(2).replace('.', ',');
+const lts = n => n.toLocaleString('es-AR');
+const NAVY = '#0A2A5E', BLUE = '#1565C0', CEL = '#19C3E6', RED = '#E4202E';
+
+// Muestras tomadas del catálogo original (sin nombres en el PDF)
+const PALETTES = {
+  EcoLine: ['#0DB2E4', '#F4F5EC', '#F2DCB2', '#C1F27C'],
+  Premium: ['#58C0E0', '#E0D8C8']
+};
+// Líneas y categorías: para sumar una categoría, agregala acá y asignala en MODELS
+const LINE_DEFS = [
+  { id: 'EcoLine', label: 'ECO LINE', cats: ['Línea Clásica', 'Mini Piscina', 'Línea Solárium'] },
+  { id: 'Premium', label: 'PREMIUM', cats: ['Exclusivo', 'Rectas', 'Solárium M', 'Solárium L', 'Solárium XL', 'Solárium Mix'] }
+];
+const LINE_LABEL = { EcoLine: 'ECO LINE', Premium: 'PREMIUM' };
+const ECAT = { 'Clásica': 'Línea Clásica', 'Solárium': 'Línea Solárium', 'Mini Piscina': 'Mini Piscina' };
+const E = (id, fam, size, L, W, D, steps, o) => Object.assign({ id: 'e-' + id, line: 'EcoLine', fam, cat: ECAT[fam], name: fam === 'Mini Piscina' ? 'Mini Piscina' : fam + ' ' + size, L, W, D, steps, cap: null, sol: null, photos: ['img/cat/e-' + id + '.png'] }, o || {});
+const P = (id, fam, L, W, D, cap, sol, steps, o) => Object.assign({ id: 'p-' + id, line: 'Premium', fam, cat: fam.replace('Solarium', 'Solárium'), name: id.toUpperCase(), L, W, D, cap, sol, steps, photos: ['img/cat/p-' + id + '.png'] }, o || {});
+const MODELS = [
+  E('clasica-s', 'Clásica', 'S', 420, 230, 140, 4),
+  E('clasica-m', 'Clásica', 'M', 570, 280, 140, 4),
+  E('clasica-xl', 'Clásica', 'XL', 700, 300, 140, 4),
+  E('clasica-max', 'Clásica', 'MAX', 780, 300, 140, 4),
+  E('solarium-m', 'Solárium', 'M', 500, 300, 140, 3, { sol: '1,00 m', solarium: true, img: 'img/ecoline500.png', imgCaption: 'Jardín de las Tejas' }),
+  E('solarium-l', 'Solárium', 'L', 600, 300, 140, 3, { sol: '1,00 m', solarium: true }),
+  E('solarium-xl', 'Solárium', 'XL', 700, 300, 140, 3, { sol: '1,00 m', solarium: true }),
+  E('solarium-spa', 'Solárium', 'SPA', 700, 300, 140, 3, { sol: '1,00 m', solarium: true, extras: ['Asiento interno: 30 cm'] }),
+  E('solarium-max', 'Solárium', 'MAX', 865, 330, 140, 3, { sol: '1,10 m', solarium: true }),
+  E('mini-m', 'Mini Piscina', 'M', 350, 200, 70, null, { mini: true, extras: ['Con equipamiento completo instalado', '¡Lista para usar!', 'Asientos internos: 40 cm', 'Antideslizante símil madera'], photos: ['img/cat/e-mini-m.png', 'img/cat/e-mini-m-b.png'] }),
+  P('x300', 'Exclusivo', 300, 200, 120, 3500, 'No', 3),
+  P('r460', 'Rectas', 470, 268, 132, 10000, null, 4, { extras: ['Primer escalón: 33 cm'] }),
+  P('r700', 'Rectas', 700, 325, 140, 22000, 'No', 4),
+  P('s530', 'Solarium M', 530, 270, 140, 14000, '60 cm', 3, { solarium: true }),
+  P('s601', 'Solarium L', 600, 310, 140, 18000, '80 cm', 3, { solarium: true }),
+  P('eco700', 'Solarium L', 700, 300, 130, 20000, '80 cm', 3, { solarium: true, name: 'ECO 700' }),
+  P('s701', 'Solarium L', 700, 310, 140, 23000, '80 cm', 3, { solarium: true }),
+  P('s650', 'Solarium XL', 650, 310, 140, 22000, '1,00 m', 3, { solarium: true }),
+  P('s702', 'Solarium XL', 700, 310, 140, 23000, '1,00 m', 3, { solarium: true }),
+  P('s800', 'Solarium XL', 800, 340, 140, 27000, '1,00 m', 3, { solarium: true }),
+  P('s950', 'Solarium XL', 950, 350, 140, 36000, '1,00 m', 3, { solarium: true }),
+  P('m400', 'Solarium Mix', 400, 230, 140, 8000, '1,40 m', 4, { solarium: true, img: 'img/premium400.png', imgCaption: 'Monte Cristo · Párroco Aguilera' }),
+  P('m465', 'Solarium Mix', 465, 260, 140, 11000, '1,25 × 0,75 m', 4, { solarium: true }),
+  P('m710', 'Solarium Mix', 710, 320, 140, 24000, '1,70 × 1,00 m', 4, { solarium: true })
+];
+const SORTS = [
+  { id: 'cat-asc', label: 'Orden del catálogo' },
+  { id: 'largo-asc', label: 'Largo ↑' }, { id: 'largo-desc', label: 'Largo ↓' },
+  { id: 'cap-asc', label: 'Capacidad ↑' }, { id: 'cap-desc', label: 'Capacidad ↓' }
+];
+const GAP = 30; // 30 cm por lado = medida + 60 cm
+
+function poolG(k, x, y, L, W, hex, sol, props) {
+  const c = Math.max(10, Math.min(16, W * 0.07));
+  const iw = L - 2 * c, ih = W - 2 * c;
+  const sw = Math.min(32, iw * 0.08);
+  const kids = [
+    h('defs', { key: 'd' },
+      h('linearGradient', { id: 'gw' + k, x1: 0, y1: 0, x2: 1, y2: 1 },
+        h('stop', { offset: '0%', stopColor: '#fff', stopOpacity: 0.45 }),
+        h('stop', { offset: '55%', stopColor: '#fff', stopOpacity: 0.05 }),
+        h('stop', { offset: '100%', stopColor: '#000', stopOpacity: 0.12 }))),
+    h('rect', { key: 'sh', x: x + 4, y: y + 8, width: L, height: W, rx: 22, fill: 'rgba(0,0,0,.18)' }),
+    h('rect', { key: 'cp', x, y, width: L, height: W, rx: 22, fill: '#F6F3EC', stroke: '#DCD5C4', strokeWidth: 2 }),
+    h('rect', { key: 'wt', x: x + c, y: y + c, width: iw, height: ih, rx: 14, fill: hex, style: { transition: 'fill .5s ease' } })
+  ];
+  for (let i = 0; i < 3; i++) kids.push(h('rect', { key: 's' + i, x: x + c + i * sw, y: y + c, width: sw, height: ih * 0.5, fill: '#fff', opacity: 0.32 - i * 0.09, rx: i === 0 ? 10 : 0 }));
+  if (sol) kids.push(h('rect', { key: 'sol', x: x + c + iw * 0.76, y: y + c, width: iw * 0.24, height: ih, fill: '#fff', opacity: 0.28, rx: 12 }));
+  kids.push(h('rect', { key: 'gl', x: x + c, y: y + c, width: iw, height: ih, rx: 14, fill: 'url(#gw' + k + ')' }));
+  return h('g', Object.assign({ key: k }, props || {}), kids);
+}
+
+function catalogSvg(m, hex) {
+  const VW = 1000, VH = 420, lines = [];
+  for (let gx = 0; gx <= VW; gx += 100) lines.push(h('line', { key: 'x' + gx, x1: gx, y1: 0, x2: gx, y2: VH, stroke: '#C9DFEE', strokeWidth: 2 }));
+  for (let gy = 10; gy <= VH; gy += 100) lines.push(h('line', { key: 'y' + gy, x1: 0, y1: gy, x2: VW, y2: gy, stroke: '#C9DFEE', strokeWidth: 2 }));
+  return h('svg', { viewBox: `0 0 ${VW} ${VH}`, style: { width: '100%', height: 'auto', display: 'block' } },
+    lines, poolG('c' + m.id, (VW - m.L) / 2, (VH - m.W) / 2, m.L, m.W, hex, m.solarium));
+}
+
+function wave(top, bottom, i, flip) {
+  const per = 720, amp = 18 + (i % 3) * 6;
+  let d = `M0 40 Q${per / 4} ${40 - amp} ${per / 2} 40`;
+  for (let x = per / 2; x < 2880; x += per / 2) d += ` T${x + per / 2} 40`;
+  d += ' V80 H0 Z';
+  let d2 = `M0 46 Q${per / 4} ${46 + amp} ${per / 2} 46`;
+  for (let x = per / 2; x < 2880; x += per / 2) d2 += ` T${x + per / 2} 46`;
+  d2 += ' V80 H0 Z';
+  const svg = (dd, op, dur, rev) => h('svg', { viewBox: '0 0 2880 80', preserveAspectRatio: 'none', style: { position: 'absolute', left: 0, bottom: 0, width: '200%', height: '100%', animation: `acuaWave ${dur}s linear infinite${rev ? ' reverse' : ''}` } }, h('path', { d: dd, fill: op }));
+  return h('div', { style: { position: 'relative', height: 72, background: top, overflow: 'hidden', lineHeight: 0 } },
+    svg(d2, CEL, 22 + i * 2, true),
+    h('div', { style: { position: 'absolute', inset: 0, opacity: 1 } }, svg(d, bottom, 16 + i * 3, false)));
+}
+
+const ICONS = {
+  dig: h('svg', { width: 28, height: 28, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, h('path', { d: 'M3 20h18' }), h('path', { d: 'M6 20v-5h12v5' }), h('path', { d: 'M14 4l4 4-6 6' })),
+  pool: h('svg', { width: 28, height: 28, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, h('rect', { x: 3, y: 5, width: 18, height: 12, rx: 3 }), h('path', { d: 'M3 13c2 0 2-1.5 4.5-1.5S10 13 12 13s2-1.5 4.5-1.5S19 13 21 13' }), h('path', { d: 'M8 17v3M16 17v3' })),
+  check: h('svg', { width: 28, height: 28, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, h('path', { d: 'M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2' }), h('path', { d: 'M2 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2' }), h('path', { d: 'M8 7l3 3 5-6' }))
+};
+
+const SHOP = {
+  pileta: [
+    { name: 'Cloro', desc: 'Granulado, líquido y en pastillas para la desinfección diaria.' },
+    { name: 'Clarificadores', desc: 'Para recuperar el agua turbia y dejarla cristalina.' },
+    { name: 'Alguicidas', desc: 'Previenen y eliminan algas y el agua verde.' },
+    { name: 'Medición de pH y cloro', desc: 'Kits y reactivos para controlar el agua en casa.' },
+    { name: 'Accesorios de limpieza', desc: 'Barrefondos, sacahojas, cepillos y mangueras.' },
+    { name: 'Filtros y bombas', desc: 'Equipos de filtrado, repuestos y arena para filtro.' }
+  ],
+  hogar: [
+    { name: 'Lavandina', desc: 'Para limpieza y desinfección de toda la casa.' },
+    { name: 'Detergentes', desc: 'Para vajilla y limpieza general.' },
+    { name: 'Desengrasantes', desc: 'Para cocina, parrilla y superficies difíciles.' },
+    { name: 'Limpiadores multiuso', desc: 'Pisos, baños y superficies.' },
+    { name: 'Jabón líquido y suavizante', desc: 'Para el lavado de ropa.' },
+    { name: 'Aromatizantes', desc: 'Desodorantes de ambiente y perfumes para pisos.' }
+  ]
+};
+
+const FAQS = [
+  { q: '¿Cuánto tarda la instalación?', a: 'Depende del modelo, del tipo de pileta (fibra u hormigón) y de las condiciones del terreno. Te damos el plazo estimado junto con el presupuesto. Plazo de referencia: a completar.' },
+  { q: '¿Qué pasa si tengo poco patio?', a: 'La Mini Piscina M (3,50 × 2,00 m) viene con equipamiento completo instalado y lista para usar, y la Premium X300 mide 3,00 × 2,00 m. Probá el planificador de esta página: cargás las medidas de tu patio y ves qué modelos entran, a escala.' },
+  { q: '¿Qué diferencia hay entre EcoLine y Premium?', a: 'Son las dos líneas de piscinas de fibra que ofrecemos. EcoLine tiene las familias Clásica, Solárium y Mini Piscina. Premium tiene Exclusivo, Rectas, Solarium M, L, XL y Solarium Mix. Podés filtrarlas en el catálogo.' },
+  { q: '¿En qué colores vienen?', a: 'Según el catálogo, la línea ECO LINE está disponible en 4 colores y la línea PREMIUM en 2. Podés verlos en la ficha de cada modelo.' },
+  { q: '¿Puedo instalar si alquilo?', a: 'Sí. Las minipiscinas son una opción pensada para quienes alquilan o tienen poco espacio. Consultanos por WhatsApp y vemos juntos cuál te conviene.' },
+  { q: '¿Cómo cuido mi pileta?', a: 'Hacé funcionar el filtro todos los días, controlá el pH y el cloro con un kit de medición, limpiá el fondo con el barrefondos y sacá hojas con el sacahojas. En el local tenés todos los insumos y te asesoramos.' }
+];
+
+const OBRAS = [
+  { slot: 'obra-quintas-arguello', img: 'img/obra-quintas-arguello.png', place: 'Quintas de Argüello', title: 'Piscina de Hormigón · 4,50 × 2,50 Solárium', extras: 'Adicionales: cascada · solárium seco · luces RGB premium', rows: 'span 2' },
+  { slot: 'obra-irregular', img: 'img/obra-irregular.png', place: '', title: 'Piscina de Hormigón · Medidas irregulares 6,0 × 5,0 × 3,5 × 2,5', extras: 'Adicionales: luces RGB · conexiones A/C · cascada · solárium y banco', rows: 'span 2' },
+  { slot: 'obra-corzuelas', img: 'img/obra-corzuelas.png', place: 'Barrio Las Corzuelas', title: 'Fibra de vidrio Premium · Línea Solárium G 6,30 × 3,10', rows: 'span 2' },
+  { slot: 'obra-7soles', img: 'img/obra-7soles-real.png', place: 'Country 7 Soles', title: 'Piscina de material 5 × 2,5 + solárium húmedo 2,5 × 1,5', extras: 'Adicionales: conexión para climatizar · luces RGB con control remoto', rows: 'span 2' },
+];
+
+class Component extends DCLogic {
+  state = {
+    w: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    scrolled: false, menu: false,
+    colorIdx: { EcoLine: 0, Premium: 0 }, line: 'EcoLine', cat: 'Todas', sort: 'cat-asc', fichaPhoto: 0,
+    patioL: 7, patioW: 4.5, planModel: 'p-m400', pos: null,
+    ficha: null, shop: 'pileta', faq: 0, ba: 50,
+    form: { nombre: '', localidad: '', modelo: 'Todavía no sé', mensaje: '' }
+  };
+
+  componentDidMount() {
+    this._onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onResize);
+    this._onScroll(); this._onResize();
+    this.io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { en.target.style.opacity = 1; en.target.style.transform = 'none'; this.io.unobserve(en.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    this.scan();
+    this._t = setTimeout(() => this.scan(), 400);
+  }
+  componentDidUpdate() { this.scan(); }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+    this.io && this.io.disconnect(); clearTimeout(this._t);
+    if (this._lbKey) window.removeEventListener('keydown', this._lbKey);
+  }
+  scan() {
+    if (!this.io) return;
+    document.querySelectorAll('[data-reveal]:not([data-rv])').forEach(el => {
+      el.setAttribute('data-rv', '1');
+      const d = +(el.getAttribute('data-delay') || 0), k = el.getAttribute('data-reveal');
+      el.style.opacity = 0;
+      el.style.transform = k === 'left' ? 'translateX(-32px)' : k === 'scale' ? 'scale(.94)' : 'translateY(32px)';
+      el.style.transition = `opacity .9s cubic-bezier(.2,.7,.2,1) ${d}ms, transform .9s cubic-bezier(.2,.7,.2,1) ${d}ms`;
+      this.io.observe(el);
+    });
+  }
+
+  model(id) { return MODELS.find(m => m.id === id) || MODELS.find(m => m.id === 'p-m400'); }
+  hex(m) { const line = (m || this.model(this.state.planModel)).line; return PALETTES[line][this.state.colorIdx[line] || 0]; }
+  colorsFor(line, dark) {
+    const pal = PALETTES[line], sel = this.state.colorIdx[line] || 0;
+    return pal.map((hex, i) => ({
+      hex, name: `Color ${i + 1} de ${pal.length}`,
+      pick: () => this.setState({ colorIdx: { ...this.state.colorIdx, [line]: i } }),
+      ring: i === sel ? (dark ? `0 0 0 3px ${CEL}` : `0 0 0 3px ${BLUE}, 0 6px 14px -4px rgba(10,42,94,.4)`) : (dark ? '0 0 0 1px rgba(255,255,255,.25)' : '0 0 0 1px rgba(10,42,94,.18)')
+    }));
+  }
+  colorLabel(line) { const n = PALETTES[line].length; return `Color ${(this.state.colorIdx[line] || 0) + 1} de ${n}`; }
+  dims() {
+    const cl = (v, a, b) => Math.min(b, Math.max(a, isNaN(v) ? a : v));
+    return { PL: Math.round(cl(+this.state.patioL, 2, 30) * 100), PW: Math.round(cl(+this.state.patioW, 2, 30) * 100) };
+  }
+  centered(m, PL, PW) { return { x: Math.round((PL - m.L) / 10) * 5, y: Math.round((PW - m.W) / 10) * 5 }; }
+  pos() {
+    const m = this.model(this.state.planModel), { PL, PW } = this.dims();
+    return this.state.pos || this.centered(m, PL, PW);
+  }
+  toSvg(e) {
+    const svg = this.svgEl; if (!svg) return { x: 0, y: 0 };
+    const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  goPlan(id) {
+    this.setState({ planModel: id, pos: null, ficha: null });
+    const el = document.getElementById('patio');
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+  }
+
+  buildPlan() {
+    const m = this.model(this.state.planModel), { PL, PW } = this.dims(), hex = this.hex(m);
+    const M = 100, CW = Math.max(PL, m.L) + 2 * M, CH = Math.max(PW, m.W) + 2 * M;
+    const p = this.pos();
+    const fs = Math.max(20, Math.max(CW, CH) / 30);
+    const zx = p.x - GAP, zy = p.y - GAP, zw = m.L + 2 * GAP, zh = m.W + 2 * GAP;
+    const bad = zx < 0 || zy < 0 || zx + zw > PL || zy + zh > PW;
+    const grid = [];
+    for (let gx = -M; gx <= CW - M; gx += 100) grid.push(h('line', { key: 'gx' + gx, x1: gx, y1: -M, x2: gx, y2: CH - M, stroke: 'rgba(158,233,248,.14)', strokeWidth: fs * 0.06 }));
+    for (let gy = -M; gy <= CH - M; gy += 100) grid.push(h('line', { key: 'gy' + gy, x1: -M, y1: gy, x2: CW - M, y2: gy, stroke: 'rgba(158,233,248,.14)', strokeWidth: fs * 0.06 }));
+    const gaps = [
+      { k: 'l', v: p.x, x1: 0, y1: p.y + m.W / 2, x2: p.x, y2: p.y + m.W / 2 },
+      { k: 'r', v: PL - p.x - m.L, x1: p.x + m.L, y1: p.y + m.W / 2, x2: PL, y2: p.y + m.W / 2 },
+      { k: 't', v: p.y, x1: p.x + m.L / 2, y1: 0, x2: p.x + m.L / 2, y2: p.y },
+      { k: 'b', v: PW - p.y - m.W, x1: p.x + m.L / 2, y1: p.y + m.W, x2: p.x + m.L / 2, y2: PW }
+    ].filter(g => g.v >= fs * 2.2);
+    const guide = gaps.map(g => {
+      const col = g.v < GAP ? '#FF8A93' : 'rgba(255,255,255,.75)';
+      const tx = (g.x1 + g.x2) / 2, ty = (g.y1 + g.y2) / 2;
+      return h('g', { key: 'gd' + g.k, pointerEvents: 'none' },
+        h('line', { x1: g.x1, y1: g.y1, x2: g.x2, y2: g.y2, stroke: col, strokeWidth: fs * 0.07, strokeDasharray: `${fs * 0.3} ${fs * 0.25}` }),
+        h('rect', { x: tx - fs * 1.7, y: ty - fs * 0.62, width: fs * 3.4, height: fs * 1.24, rx: fs * 0.62, fill: NAVY, stroke: col, strokeWidth: fs * 0.05 }),
+        h('text', { x: tx, y: ty + fs * 0.32, fill: col, fontSize: fs * 0.82, fontWeight: 800, textAnchor: 'middle', fontFamily: 'Archivo' }, m2(g.v) + ' m'));
+    });
+    const onDown = e => {
+      e.preventDefault();
+      const s = this.toSvg(e), cur = this.pos();
+      this.drag = { dx: s.x - cur.x, dy: s.y - cur.y };
+      try { this.svgEl.setPointerCapture(e.pointerId); } catch (_) {}
+      this.setState({ dragging: true });
+    };
+    const onMove = e => {
+      if (!this.drag) return;
+      const s = this.toSvg(e);
+      let x = Math.round((s.x - this.drag.dx) / 5) * 5, y = Math.round((s.y - this.drag.dy) / 5) * 5;
+      x = Math.min(CW - M - m.L, Math.max(-M, x)); y = Math.min(CH - M - m.W, Math.max(-M, y));
+      this.setState({ pos: { x, y } });
+    };
+    const onUp = () => { if (this.drag) { this.drag = null; this.setState({ dragging: false }); } };
+    return h('svg', {
+      ref: el => { this.svgEl = el; }, viewBox: `${-M} ${-M} ${CW} ${CH}`,
+      onPointerMove: onMove, onPointerUp: onUp, onPointerCancel: onUp,
+      style: { width: '100%', height: 'auto', maxHeight: '72vh', display: 'block', touchAction: 'none', userSelect: 'none' }
+    },
+      h('rect', { x: -M, y: -M, width: CW, height: CH, fill: '#0D3572' }),
+      grid,
+      h('rect', { x: 0, y: 0, width: PL, height: PW, fill: 'rgba(158,233,248,.07)', stroke: '#fff', strokeWidth: fs * 0.14, rx: 4 }),
+      h('text', { x: PL / 2, y: -fs * 0.9, fill: '#fff', fontSize: fs * 0.95, fontWeight: 800, textAnchor: 'middle', fontFamily: 'Archivo' }, 'Largo ' + m2(PL) + ' m'),
+      h('text', { x: -fs * 0.9, y: PW / 2, fill: '#fff', fontSize: fs * 0.95, fontWeight: 800, textAnchor: 'middle', fontFamily: 'Archivo', transform: `rotate(-90 ${-fs * 0.9} ${PW / 2})` }, 'Ancho ' + m2(PW) + ' m'),
+      h('rect', { x: zx, y: zy, width: zw, height: zh, rx: 26, fill: bad ? 'rgba(228,32,46,.2)' : 'rgba(25,195,230,.1)', stroke: bad ? RED : CEL, strokeWidth: fs * 0.11, strokeDasharray: `${fs * 0.45} ${fs * 0.3}`, style: { transition: 'fill .3s, stroke .3s' }, pointerEvents: 'none' }),
+      guide,
+      poolG('plan', p.x, p.y, m.L, m.W, hex, m.solarium, { onPointerDown: onDown, style: { cursor: this.state.dragging ? 'grabbing' : 'grab' } }),
+      h('text', { x: p.x + m.L / 2, y: p.y + m.W / 2 + fs * 0.35, fill: '#fff', fontSize: fs * 0.9, fontWeight: 900, textAnchor: 'middle', fontFamily: 'Archivo', pointerEvents: 'none', style: { paintOrder: 'stroke', stroke: 'rgba(10,42,94,.45)', strokeWidth: fs * 0.12 } }, m2(m.L) + ' × ' + m2(m.W))
+    );
+  }
+
+  lightbox() {
+    const imgs = OBRAS.filter(x => x.img), i = this.state.lb;
+    const open = i != null && i >= 0 && i < imgs.length, n = imgs.length;
+    const go = d => e => { e && e.stopPropagation(); this.setState({ lb: (i + d + n) % n }); };
+    if (open && !this._lbKey) {
+      this._lbKey = e => {
+        if (this.state.lb == null) return;
+        if (e.key === 'Escape') this.setState({ lb: null });
+        if (e.key === 'ArrowRight') this.setState({ lb: (this.state.lb + 1) % n });
+        if (e.key === 'ArrowLeft') this.setState({ lb: (this.state.lb - 1 + n) % n });
+      };
+      window.addEventListener('keydown', this._lbKey);
+    }
+    const o = open ? imgs[i] : {};
+    return {
+      lbOpen: open, lbMulti: n > 1, lbClose: () => this.setState({ lb: null }), lbPrev: go(-1), lbNext: go(1),
+      lb: { place: o.place || '', hasPlace: !!o.place, title: o.title || '', extras: o.extras || '', hasExtras: !!o.extras },
+      lbCount: open ? (i + 1) + ' / ' + n : '',
+      lbImg: open ? h('img', { key: o.img, src: o.img, alt: o.title, onClick: e => e.stopPropagation(),
+        style: { maxWidth: 'min(1200px, 100%)', maxHeight: 'calc(100vh - 200px)', objectFit: 'contain', borderRadius: 18, boxShadow: '0 40px 100px -20px rgba(0,0,0,.7)', animation: 'acuaZoom .45s cubic-bezier(.2,.7,.2,1)' } }) : null
+    };
+  }
+
+  desc(m) {
+    if (m.mini) return 'Con equipamiento completo instalado. ¡Lista para usar!';
+    const p = [];
+    if (m.solarium) p.push('Con solárium' + (m.sol ? ' de ' + m.sol : ''));
+    else p.push('Sin solárium');
+    if (m.steps) p.push(m.steps + ' escalones');
+    p.push('profundidad ' + m2(m.D) + ' m');
+    return p.join(' · ') + '.';
+  }
+
+  status() {
+    const m = this.model(this.state.planModel), { PL, PW } = this.dims(), p = this.pos();
+    const needL = m.L + 2 * GAP, needW = m.W + 2 * GAP;
+    const fitsAll = PL >= needL && PW >= needW;
+    const fitsPos = p.x - GAP >= 0 && p.y - GAP >= 0 && p.x + m.L + GAP <= PL && p.y + m.W + GAP <= PW;
+    const okS = { bg: 'rgba(25,195,230,.14)', bd: 'rgba(25,195,230,.5)', fg: CEL };
+    const badS = { bg: 'rgba(228,32,46,.16)', bd: 'rgba(228,32,46,.6)', fg: '#FF8A93' };
+    if (!fitsAll) {
+      const alt = [...MODELS].sort((a, b) => b.L * b.W - a.L * a.W).find(x => PL >= x.L + 2 * GAP && PW >= x.W + 2 * GAP);
+      return Object.assign({}, badS, {
+        title: 'No entra en tu patio',
+        text: `El ${m.name} necesita un terreno mínimo de ${m2(needL)} × ${m2(needW)} m.` + (alt ? ` En tu patio entra el ${alt.name}.` : ' Consultanos por una pileta de hormigón a medida.'),
+        hasSuggest: !!alt, suggestLabel: alt ? 'Probar con ' + alt.name : '',
+        onSuggest: () => alt && this.setState({ planModel: alt.id, pos: null })
+      });
+    }
+    if (!fitsPos) return Object.assign({}, badS, { title: 'Se sale del espacio', text: 'La pileta entra, pero en esta posición no deja los 30 cm por lado. Arrastrala hacia adentro del patio.', hasSuggest: true, suggestLabel: 'Ubicar en el centro', onSuggest: () => this.setState({ pos: null }) });
+    return Object.assign({}, okS, { title: '¡Entra en tu patio!', text: `Terreno mínimo ${m2(needL)} × ${m2(needW)} m. Te queda libre ${m2(PL * PW / 100 - m.L * m.W / 100 | 0).replace(/,00$/, '')} m² aprox. de patio alrededor.`, hasSuggest: false, suggestLabel: '', onSuggest: null });
+  }
+
+  renderVals() {
+    const s = this.state, hex = this.hex(), isMobile = s.w < 1100;
+    const navLinks = [
+      { label: 'Catálogo', href: '#catalogo' }, { label: 'Tu patio', href: '#patio' }, { label: 'Proceso', href: '#proceso' },
+      { label: 'Obras', href: '#obras' }, { label: 'Insumos', href: '#insumos' }, { label: 'Contacto', href: '#contacto' }
+    ];
+    const lineDef = LINE_DEFS.find(l => l.id === s.line) || LINE_DEFS[0];
+    const lineTabs = LINE_DEFS.map(l => {
+      const on = l.id === lineDef.id;
+      return {
+        label: l.label, count: MODELS.filter(m => m.line === l.id).length + ' modelos', cats: l.cats.length + ' categorías',
+        colorsTxt: PALETTES[l.id].length + ' colores disponibles',
+        dots: PALETTES[l.id].map(hx => ({ hex: hx })),
+        pick: () => this.setState({ line: l.id, cat: 'Todas', showAll: false }),
+        bg: on ? NAVY : '#fff', fg: on ? '#fff' : NAVY, sub: on ? 'rgba(255,255,255,.75)' : '#3C5477',
+        bd: on ? NAVY : '#DCE9F5', shadow: on ? '0 24px 40px -24px rgba(10,42,94,.7)' : 'none', dotRing: on ? 'rgba(255,255,255,.6)' : 'rgba(10,42,94,.2)'
+      };
+    });
+    const inLineModels = MODELS.filter(m => m.line === lineDef.id);
+    const catChips = ['Todas', ...lineDef.cats].map(c => ({
+      label: c === 'Todas' ? 'Todas las categorías' : c,
+      count: c === 'Todas' ? inLineModels.length : inLineModels.filter(m => m.cat === c).length,
+      pick: () => this.setState({ cat: c, showAll: false }),
+      bg: s.cat === c ? '#19C3E6' : 'transparent', fg: NAVY, bd: s.cat === c ? '#19C3E6' : '#CFE2F5'
+    }));
+    const [key, dir] = s.sort.split('-');
+    const catOrder = m => lineDef.cats.indexOf(m.cat) * 100 + MODELS.indexOf(m);
+    const list = inLineModels.filter(m => s.cat === 'Todas' || m.cat === s.cat)
+      .sort((a, b) => {
+        if (key === 'cat') return catOrder(a) - catOrder(b);
+        if (key === 'cap') { if (a.cap == null && b.cap == null) return a.L - b.L; if (a.cap == null) return 1; if (b.cap == null) return -1; return (a.cap - b.cap) * (dir === 'asc' ? 1 : -1); }
+        return (a.L - b.L || a.W - b.W) * (dir === 'asc' ? 1 : -1);
+      });
+    const lineColors = this.colorsFor(lineDef.id, false);
+    const nColors = PALETTES[lineDef.id].length;
+    const cols = Math.max(1, Math.floor((Math.min(s.w - 40, 1240) + 22) / 362));
+    const limit = cols * 3, hasMore = list.length > limit;
+    const shown = s.showAll ? list : list.slice(0, limit);
+    const toggleAll = () => {
+      if (s.showAll) { const el = document.getElementById('catalogo'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' }); }
+      this.setState({ showAll: !s.showAll });
+    };
+    this._more = { hasMore, label: s.showAll ? 'Ver menos' : `Ver más piletas (${list.length - limit})`, toggleAll };
+    const catalog = shown.map(m => ({
+      name: m.name, desc: this.desc(m), lineName: LINE_LABEL[m.line], catName: m.cat, photo: m.photos[0],
+      dims: m2(m.L) + ' × ' + m2(m.W) + ' m', depth: (m.D < 100 ? m.D + ' cm' : m2(m.D) + ' m'),
+      capLabel: m.cap ? 'Capacidad' : 'Profundidad', cap: m.cap ? lts(m.cap) + ' L' : (m.D < 100 ? m.D + ' cm' : m2(m.D) + ' m'),
+      colorsTxt: nColors + ' colores', dots: PALETTES[m.line].map(hx => ({ hex: hx })),
+      openFicha: () => this.setState({ ficha: m.id, fichaPhoto: 0 }), tryPlan: () => this.goPlan(m.id),
+      wa: wa(`Hola Acua Piscinas! Quiero información y presupuesto de la pileta ${LINE_LABEL[m.line]} · ${m.cat} · ${m.name}.`)
+    }));
+
+    let ficha = {};
+    if (s.ficha) {
+      const m = this.model(s.ficha);
+      const specs = [
+        { k: 'Largo', v: m2(m.L) + ' m' }, { k: 'Ancho', v: m2(m.W) + ' m' }, { k: 'Profundidad', v: m.D < 100 ? m.D + ' cm' : m2(m.D) + ' m' }
+      ];
+      if (m.cap) specs.push({ k: 'Capacidad', v: lts(m.cap) + ' L' });
+      if (m.sol) specs.push({ k: 'Solárium (H)', v: m.sol });
+      if (m.steps) specs.push({ k: 'Escalones', v: String(m.steps) });
+      (m.extras || []).forEach(x => { const i = x.indexOf(':'); specs.push(i > 0 ? { k: x.slice(0, i), v: x.slice(i + 1).trim() } : { k: x, v: '✓' }); });
+      specs.push({ k: 'Terreno mínimo sugerido', v: m2(m.L + 60) + ' × ' + m2(m.W + 60) + ' m' });
+      const gallery = [...m.photos.map(p => ({ src: p, cap: 'Imagen del catálogo' })), ...(m.img ? [{ src: m.img, cap: 'Instalación real · ' + (m.imgCaption || '') }] : [])];
+      const pi = Math.min(s.fichaPhoto || 0, gallery.length - 1), mhex = this.hex(m);
+      const cIdx = s.colorIdx[m.line] || 0;
+      specs.unshift({ k: 'Línea', v: LINE_LABEL[m.line] }, { k: 'Categoría', v: m.cat });
+      specs.push({ k: 'Colores disponibles', v: String(PALETTES[m.line].length) });
+      ficha = {
+        name: m.name, desc: this.desc(m), lineLabel: LINE_LABEL[m.line] + ' · ' + m.cat,
+        svgBig: catalogSvg(m, mhex), photo: gallery[pi].src, photoCap: gallery[pi].cap,
+        thumbs: gallery.map((g, i) => ({ src: g.src, pick: () => this.setState({ fichaPhoto: i }), bd: i === pi ? '#19C3E6' : '#DCE9F5' })),
+        hasThumbs: gallery.length > 1,
+        colors: this.colorsFor(m.line, false), colorLabel: this.colorLabel(m.line),
+        photoNote: 'Foto de referencia: el catálogo no incluye fotografías de este modelo en cada color. El plano a escala muestra el color elegido.',
+        specs: specs.map(x => ({ ...x, tag: '' })),
+        tryPlan: () => this.goPlan(m.id),
+        wa: wa(`Hola Acua Piscinas! Quiero presupuesto de la pileta ${LINE_LABEL[m.line]} · ${m.cat} · ${m.name}, color ${cIdx + 1} de ${PALETTES[m.line].length} del catálogo.`)
+      };
+    }
+
+    const pm = this.model(s.planModel), { PL, PW } = this.dims();
+    const setNum = k => e => { const v = parseFloat(String(e.target.value).replace(',', '.')); if (!isNaN(v)) this.setState({ [k]: v, pos: null }); };
+
+    const faqs = FAQS.map((f, i) => ({
+      ...f, delay: i * 80, toggle: () => this.setState({ faq: s.faq === i ? -1 : i }),
+      rows: s.faq === i ? '1fr' : '0fr', rot: s.faq === i ? 45 : 0,
+      bg: s.faq === i ? 'rgba(25,195,230,.12)' : 'rgba(255,255,255,.04)'
+    }));
+
+    const tints = ['#19C3E6', '#1565C0', '#5ED6F0', '#0A2A5E', '#19C3E6', '#1565C0'];
+    const shopItems = SHOP[s.shop].map((p, i) => ({ ...p, tint: tints[i], wa: wa(`Hola Acua Piscinas! Quería consultar por ${p.name.toLowerCase()}.`) }));
+    const shopTabs = [{ id: 'pileta', label: 'Para tu pileta' }, { id: 'hogar', label: 'Para tu hogar' }].map(t => ({
+      ...t, pick: () => this.setState({ shop: t.id }), bg: s.shop === t.id ? NAVY : 'transparent', fg: s.shop === t.id ? '#fff' : NAVY
+    }));
+
+    const baSet = e => {
+      const r = e.currentTarget.getBoundingClientRect();
+      this.setState({ ba: Math.max(2, Math.min(98, ((e.clientX - r.left) / r.width) * 100)) });
+    };
+
+    const setForm = k => e => this.setState({ form: { ...this.state.form, [k]: e.target.value } });
+
+    const bubbles = h('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' } },
+      [8, 18, 30, 44, 58, 70, 82, 92].map((l, i) => h('span', { key: i, style: {
+        position: 'absolute', bottom: -30, left: l + '%', width: 8 + (i % 4) * 6, height: 8 + (i % 4) * 6, borderRadius: '50%',
+        border: '1.5px solid rgba(158,233,248,.55)', background: 'rgba(25,195,230,.08)',
+        animation: `acuaRise ${11 + (i % 5) * 3}s ease-in ${i * 1.4}s infinite`
+      } })));
+
+    const heroPlanM = this.model('p-m400');
+    const hx = (600 - heroPlanM.L) / 2, hy = (400 - heroPlanM.W) / 2;
+    const teaserLines = [];
+    for (let gx = -100; gx <= 700; gx += 100) teaserLines.push(h('line', { key: 'x' + gx, x1: gx, y1: -100, x2: gx, y2: 500, stroke: 'rgba(158,233,248,.16)', strokeWidth: 3 }));
+    for (let gy = -100; gy <= 500; gy += 100) teaserLines.push(h('line', { key: 'y' + gy, x1: -100, y1: gy, x2: 700, y2: gy, stroke: 'rgba(158,233,248,.16)', strokeWidth: 3 }));
+    const heroCard = h('a', { href: '#patio', style: { display: 'block', textDecoration: 'none', color: '#fff', animation: 'acuaFloat 7s ease-in-out infinite' } },
+      h('div', { style: { position: 'relative', overflow: 'hidden', background: 'rgba(10,42,94,.62)', backdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,.18)', borderRadius: 28, padding: 18, boxShadow: '0 40px 80px -30px rgba(0,0,0,.6)' } },
+        h('div', { style: { position: 'absolute', top: 0, bottom: 0, width: '40%', background: 'linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)', animation: 'acuaShine 6s ease-in-out infinite', pointerEvents: 'none' } }),
+        h('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12, padding: '0 4px' } },
+          h('span', { style: { fontWeight: 800, fontSize: 12, letterSpacing: '.14em', textTransform: 'uppercase', color: '#9EE9F8' } }, 'Tu patio · a escala'),
+          h('span', { style: { fontWeight: 800, fontSize: 12, background: CEL, color: NAVY, borderRadius: 999, padding: '5px 10px' } }, '¡Entra!')),
+        h('svg', { viewBox: '-100 -100 800 600', style: { width: '100%', display: 'block', borderRadius: 16, background: '#0D3572' } },
+          teaserLines,
+          h('rect', { x: 0, y: 0, width: 600, height: 400, fill: 'rgba(158,233,248,.07)', stroke: '#fff', strokeWidth: 5 }),
+          h('rect', { x: hx - 30, y: hy - 30, width: heroPlanM.L + 60, height: heroPlanM.W + 60, rx: 24, fill: 'rgba(25,195,230,.1)', stroke: CEL, strokeWidth: 5, strokeDasharray: '16 10' }),
+          poolG('hero', hx, hy, heroPlanM.L, heroPlanM.W, hex, true)),
+        h('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, marginTop: 14, padding: '0 4px' } },
+          h('div', null,
+            h('div', { style: { fontWeight: 900, fontStretch: '115%', fontSize: 22, textTransform: 'uppercase' } }, 'Premium · M400'),
+            h('div', { style: { fontSize: 13, color: 'rgba(255,255,255,.7)' } }, 'En un patio de 6,00 × 4,00 m')),
+          h('span', { style: { fontWeight: 800, fontSize: 14, color: CEL } }, 'Probá el tuyo →'))));
+
+    const waFab = h('a', { href: wa('Hola Acua Piscinas! Quería hacer una consulta.'), target: '_blank', rel: 'noopener', 'aria-label': 'WhatsApp',
+      style: { position: 'fixed', right: 20, bottom: 20, zIndex: 60, width: 62, height: 62, borderRadius: '50%', background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'acuaPulse 2.2s ease-out infinite' } },
+      h('svg', { width: 32, height: 32, viewBox: '0 0 24 24', fill: 'none', stroke: '#fff', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round' },
+        h('path', { d: 'M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z' }),
+        h('path', { d: 'M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.4-2.4-1.8-2.8-2.8l.8-1-1-2z', fill: '#fff', strokeWidth: 1 })));
+
+    const fichaM = s.ficha ? this.model(s.ficha) : null;
+    return {
+      isMobile, isDesktop: !isMobile, navLinks,
+      navBg: s.scrolled || s.menu ? 'rgba(10,42,94,.96)' : 'transparent',
+      navShadow: s.scrolled ? '0 10px 30px -12px rgba(0,0,0,.45)' : 'none',
+      navPad: s.scrolled ? '8px 0' : '16px 0',
+      logoH: s.scrolled ? (isMobile ? '54px' : '72px') : (isMobile ? '78px' : '118px'),
+      menuVisible: isMobile && s.menu, menuIcon: s.menu ? '✕' : '☰',
+      toggleMenu: () => this.setState({ menu: !s.menu }), closeMenu: () => this.setState({ menu: false }),
+      waGeneral: wa('Hola Acua Piscinas! Quiero pedir un presupuesto.'),
+      waHormigon: wa('Hola Acua Piscinas! Quiero consultar por una pileta de hormigón.'),
+      waRenov: wa('Hola Acua Piscinas! Quiero consultar por la renovación con revestimiento símil Bali.'),
+      waPlan: wa(`Hola Acua Piscinas! Mi patio mide ${m2(PL)} × ${m2(PW)} m y me interesa la ${pm.name}. ¿Me pasan presupuesto?`),
+      bubbles, heroCard, waFab,
+      waveHero: wave('transparent', '#fff', 0), waveCatalog: wave('#F3F8FC', NAVY, 1), wavePlan: wave(NAVY, '#fff', 2),
+      waveProceso: wave('#fff', NAVY, 3), waveRenov: wave(NAVY, '#fff', 4), waveShop: wave('#F3F8FC', NAVY, 5),
+      waveFaq: wave(NAVY, '#fff', 6), waveContact: wave('#fff', NAVY, 7),
+      lineTabs, catChips, lineColors, lineColorLabel: this.colorLabel(lineDef.id), lineName: lineDef.label, nColors,
+      resultTxt: list.length === 1 ? '1 modelo' : list.length + ' modelos',
+      planColors: this.colorsFor(pm.line, true), planColorLabel: this.colorLabel(pm.line),
+      sorts: SORTS, sort: s.sort, onSort: e => this.setState({ sort: e.target.value }), catalog,
+      hasMore: this._more.hasMore, moreLabel: this._more.label, toggleAll: this._more.toggleAll,
+      ...this.lightbox(),
+      fichaOpen: !!s.ficha, ficha, closeFicha: () => this.setState({ ficha: null }), stop: e => e.stopPropagation(),
+      patioL: s.patioL, patioW: s.patioW, onPatioL: setNum('patioL'), onPatioW: setNum('patioW'),
+      planModel: s.planModel, onPlanModel: e => this.setState({ planModel: e.target.value, pos: null }),
+      modelOptions: MODELS.map(m => ({ id: m.id, label: `${LINE_LABEL[m.line]} · ${m.name} · ${m2(m.L)} × ${m2(m.W)} m` })),
+      planSvg: this.buildPlan(), status: this.status(), centerPool: () => this.setState({ pos: null }),
+      steps: [
+        { n: '01', delay: 0, icon: ICONS.dig, title: 'Excavación', text: 'Marcamos el terreno según el modelo elegido y hacemos la excavación con las medidas exactas.' },
+        { n: '02', delay: 120, icon: ICONS.pool, title: 'Colocación y filtrado', text: 'Colocamos y nivelamos la pileta, e instalamos el sistema de filtrado y sus conexiones.' },
+        { n: '03', delay: 240, icon: ICONS.check, title: 'Terminación y entrega', text: 'Hacemos la terminación del borde, llenamos la pileta y te explicamos cómo mantenerla.' }
+      ],
+      ba: s.ba, baRight: 100 - s.ba,
+      baDown: e => { this.baDrag = true; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {} baSet(e); },
+      baMove: e => { if (this.baDrag) baSet(e); }, baUp: () => { this.baDrag = false; },
+      obras: OBRAS.map((o, i) => ({ ...o, delay: i * 90, rows: isMobile ? 'span 1' : o.rows, ph: o.ph || o.title, extras: o.extras || '', hasExtras: !!o.extras, hasPlace: !!o.place,
+        hasImg: !!o.img, noImg: !o.img, cursor: o.img ? 'zoom-in' : 'default',
+        open: () => { if (o.img) this.setState({ lb: OBRAS.filter(x => x.img).indexOf(o) }); } })),
+      shopTabs, shopItems, faqs,
+      form: s.form, formOptions: ['Todavía no sé', ...MODELS.map(m => m.name), 'Pileta de hormigón', 'Renovación símil Bali'],
+      onNombre: setForm('nombre'), onLocalidad: setForm('localidad'), onModelo: setForm('modelo'), onMensaje: setForm('mensaje'),
+      onSubmit: e => {
+        e.preventDefault(); const f = this.state.form;
+        const t = `Hola Acua Piscinas! Soy ${f.nombre || '-'}${f.localidad ? ', de ' + f.localidad : ''}. Me interesa: ${f.modelo}.${f.mensaje ? ' ' + f.mensaje : ''}`;
+        window.open(wa(t), '_blank');
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
