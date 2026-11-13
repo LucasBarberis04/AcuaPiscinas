@@ -577,12 +577,14 @@ const PALETTES = {
 // Líneas y categorías: para sumar una categoría, agregala acá y asignala en MODELS
 const LINE_DEFS = [
   { id: 'EcoLine', label: 'ECO LINE', cats: ['Línea Clásica', 'Mini Piscina', 'Línea Solárium'] },
-  { id: 'Premium', label: 'PREMIUM', cats: ['Exclusivo', 'Rectas', 'Solárium M', 'Solárium L', 'Solárium XL', 'Solárium Mix'] }
+  { id: 'Premium', label: 'PREMIUM', cats: ['Exclusivo', 'Rectas', 'Solárium'] }
 ];
 const LINE_LABEL = { EcoLine: 'ECO LINE', Premium: 'PREMIUM' };
 const ECAT = { 'Clásica': 'Línea Clásica', 'Solárium': 'Línea Solárium', 'Mini Piscina': 'Mini Piscina' };
+// Premium: Solarium M / L / XL / Mix quedan como subtipo (fam) dentro de la categoría única 'Solárium'
+const PCAT = fam => /^Solarium/.test(fam) ? 'Solárium' : fam;
 const E = (id, fam, size, L, W, D, steps, o) => Object.assign({ id: 'e-' + id, line: 'EcoLine', fam, cat: ECAT[fam], name: fam === 'Mini Piscina' ? 'Mini Piscina' : fam + ' ' + size, L, W, D, steps, cap: null, sol: null, photos: ['img/cat/e-' + id + '.png'] }, o || {});
-const P = (id, fam, L, W, D, cap, sol, steps, o) => Object.assign({ id: 'p-' + id, line: 'Premium', fam, cat: fam.replace('Solarium', 'Solárium'), name: id.toUpperCase(), L, W, D, cap, sol, steps, photos: ['img/cat/p-' + id + '.png'] }, o || {});
+const P = (id, fam, L, W, D, cap, sol, steps, o) => Object.assign({ id: 'p-' + id, line: 'Premium', fam, cat: PCAT(fam), name: id.toUpperCase(), L, W, D, cap, sol, steps, photos: ['img/cat/p-' + id + '.png'] }, o || {});
 const MODELS = [
   E('clasica-s', 'Clásica', 'S', 420, 230, 140, 4),
   E('clasica-m', 'Clásica', 'M', 570, 280, 140, 4),
@@ -610,10 +612,12 @@ const MODELS = [
   P('m710', 'Solarium Mix', 710, 320, 140, 24000, '1,70 × 1,00 m', 4, { solarium: true })
 ];
 const SORTS = [
-  { id: 'cat-asc', label: 'Orden del catálogo' },
+  { id: 'size-asc', label: 'Tamaño: menor a mayor' },
   { id: 'largo-asc', label: 'Largo ↑' }, { id: 'largo-desc', label: 'Largo ↓' },
   { id: 'cap-asc', label: 'Capacidad ↑' }, { id: 'cap-desc', label: 'Capacidad ↓' }
 ];
+// Tamaño = superficie (largo × ancho); desempata por largo, ancho, capacidad y orden de carga
+const bySize = (a, b) => (a.L * a.W - b.L * b.W) || (a.L - b.L) || (a.W - b.W) || ((a.cap || 0) - (b.cap || 0)) || (MODELS.indexOf(a) - MODELS.indexOf(b));
 const GAP = 30; // 30 cm por lado = medida + 60 cm
 
 function poolG(k, x, y, L, W, hex, sol, props) {
@@ -686,7 +690,7 @@ const SHOP = {
 const FAQS = [
   { q: '¿Cuánto tarda la instalación?', a: 'Depende del modelo, del tipo de pileta (fibra u hormigón) y de las condiciones del terreno. Te damos el plazo estimado junto con el presupuesto. Plazo de referencia: a completar.' },
   { q: '¿Qué pasa si tengo poco patio?', a: 'La Mini Piscina M (3,50 × 2,00 m) viene con equipamiento completo instalado y lista para usar, y la Premium X300 mide 3,00 × 2,00 m. Probá el planificador de esta página: cargás las medidas de tu patio y ves qué modelos entran, a escala.' },
-  { q: '¿Qué diferencia hay entre EcoLine y Premium?', a: 'Son las dos líneas de piscinas de fibra que ofrecemos. EcoLine tiene las familias Clásica, Solárium y Mini Piscina. Premium tiene Exclusivo, Rectas, Solarium M, L, XL y Solarium Mix. Podés filtrarlas en el catálogo.' },
+  { q: '¿Qué diferencia hay entre EcoLine y Premium?', a: 'Son las dos líneas de piscinas de fibra que ofrecemos. EcoLine tiene Línea Clásica, Mini Piscina y Línea Solárium. Premium tiene Exclusivo, Rectas y Solárium. Podés filtrarlas en el catálogo.' },
   { q: '¿En qué colores vienen?', a: 'Según el catálogo, la línea ECO LINE está disponible en 4 colores y la línea PREMIUM en 2. Podés verlos en la ficha de cada modelo.' },
   { q: '¿Puedo instalar si alquilo?', a: 'Sí. Las minipiscinas son una opción pensada para quienes alquilan o tienen poco espacio. Consultanos por WhatsApp y vemos juntos cuál te conviene.' },
   { q: '¿Cómo cuido mi pileta?', a: 'Hacé funcionar el filtro todos los días, controlá el pH y el cloro con un kit de medición, limpiá el fondo con el barrefondos y sacá hojas con el sacahojas. En el local tenés todos los insumos y te asesoramos.' }
@@ -703,7 +707,7 @@ class Component extends DCLogic {
   state = {
     w: typeof window !== 'undefined' ? window.innerWidth : 1200,
     scrolled: false, menu: false,
-    colorIdx: { EcoLine: 0, Premium: 0 }, line: 'EcoLine', cat: 'Todas', sort: 'cat-asc', fichaPhoto: 0,
+    colorIdx: { EcoLine: 0, Premium: 0 }, line: 'EcoLine', cat: 'Todas', sort: 'size-asc', fichaPhoto: 0,
     patioL: 7, patioW: 4.5, planModel: 'p-m400', pos: null,
     ficha: null, shop: 'pileta', faq: 0, ba: 50,
     form: { nombre: '', localidad: '', modelo: 'Todavía no sé', mensaje: '' }
@@ -906,10 +910,9 @@ class Component extends DCLogic {
       bg: s.cat === c ? '#19C3E6' : 'transparent', fg: NAVY, bd: s.cat === c ? '#19C3E6' : '#CFE2F5'
     }));
     const [key, dir] = s.sort.split('-');
-    const catOrder = m => lineDef.cats.indexOf(m.cat) * 100 + MODELS.indexOf(m);
     const list = inLineModels.filter(m => s.cat === 'Todas' || m.cat === s.cat)
       .sort((a, b) => {
-        if (key === 'cat') return catOrder(a) - catOrder(b);
+        if (key === 'size') return bySize(a, b);
         if (key === 'cap') { if (a.cap == null && b.cap == null) return a.L - b.L; if (a.cap == null) return 1; if (b.cap == null) return -1; return (a.cap - b.cap) * (dir === 'asc' ? 1 : -1); }
         return (a.L - b.L || a.W - b.W) * (dir === 'asc' ? 1 : -1);
       });
