@@ -21,17 +21,47 @@ body{margin:0;background:#fff;color:#0A2A5E;font-family:'Archivo',system-ui,sans
 a{color:#1565C0;text-decoration:none}
 a:hover{color:#19C3E6}
 input,select,textarea,button{font-family:inherit}
-.acua-hero-title{font-size:clamp(34px,calc(12vw - 6px),92px)}
-.acua-hero-title>span{white-space:nowrap}
-@media (min-width:1100px){.acua-hero-title{font-size:clamp(60px,6.6vw,92px)}}
 @keyframes acuaWave{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes acuaRise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.8}100%{transform:translateY(-90vh) scale(1.1);opacity:0}}
 @keyframes acuaFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(-.5deg)}}
 @keyframes acuaPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 12px 30px -8px rgba(0,0,0,.35)}100%{box-shadow:0 0 0 20px rgba(37,211,102,0),0 12px 30px -8px rgba(0,0,0,.35)}}
 @keyframes acuaShine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(220%)}}
+@keyframes acuaCardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes acuaZoom{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
 @keyframes acuaTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 </style>
+<meta name="ext-resource-dependency" content="img/cat/e-clasica-m.png">
+<meta name="ext-resource-dependency" content="img/cat/e-clasica-max.png">
+<meta name="ext-resource-dependency" content="img/cat/e-clasica-s.png">
+<meta name="ext-resource-dependency" content="img/cat/e-clasica-xl.png">
+<meta name="ext-resource-dependency" content="img/cat/e-mini-m-b.png">
+<meta name="ext-resource-dependency" content="img/cat/e-mini-m.png">
+<meta name="ext-resource-dependency" content="img/cat/e-solarium-l.png">
+<meta name="ext-resource-dependency" content="img/cat/e-solarium-m.png">
+<meta name="ext-resource-dependency" content="img/cat/e-solarium-max.png">
+<meta name="ext-resource-dependency" content="img/cat/e-solarium-spa.png">
+<meta name="ext-resource-dependency" content="img/cat/e-solarium-xl.png">
+<meta name="ext-resource-dependency" content="img/cat/p-eco700.png">
+<meta name="ext-resource-dependency" content="img/cat/p-m400.png">
+<meta name="ext-resource-dependency" content="img/cat/p-m465.png">
+<meta name="ext-resource-dependency" content="img/cat/p-m710.png">
+<meta name="ext-resource-dependency" content="img/cat/p-r460.png">
+<meta name="ext-resource-dependency" content="img/cat/p-r700.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s530.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s601.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s650.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s701.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s702.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s800.png">
+<meta name="ext-resource-dependency" content="img/cat/p-s950.png">
+<meta name="ext-resource-dependency" content="img/cat/p-x300.png">
+<meta name="ext-resource-dependency" content="img/ecoline500.png">
+<meta name="ext-resource-dependency" content="img/premium400.png">
+<meta name="ext-resource-dependency" content="img/obra-7soles-real.png">
+<meta name="ext-resource-dependency" content="img/obra-corzuelas.png">
+<meta name="ext-resource-dependency" content="img/obra-irregular.png">
+<meta name="ext-resource-dependency" content="img/obra-quintas-arguello.png">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A2A5E"></rect><path d="M22 58c7 0 7-5 14-5s7 5 14 5 7-5 14-5 7 5 14 5" fill="none" stroke="#19C3E6" stroke-width="5" stroke-linecap="round"></path><path d="M22 70c7 0 7-5 14-5s7 5 14 5 7-5 14-5 7 5 14 5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"></path><text x="50" y="44" text-anchor="middle" font-family="Arial" font-weight="900" font-size="20" fill="#fff">ACUA</text></svg></template>
 </helmet>
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s ease, box-shadow .35s ease, padding .35s ease;background:{{ navBg }};box-shadow:{{ navShadow }};padding:{{ navPad }}">
@@ -45,7 +75,7 @@ input,select,textarea,button{font-family:inherit}
       </nav>
     </sc-if>
     <div style="display:flex;align-items:center;gap:10px">
-      <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#E4202E;color:#fff;font-weight:800;font-size:14px;padding:12px 20px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(228,32,46,.8);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#fff">Pedir presupuesto</a>
+      <a href="#contacto" onClick="{{ goContactGeneral }}" style="display:inline-flex;align-items:center;gap:8px;background:#E4202E;color:#fff;font-weight:800;font-size:14px;padding:12px 20px;border-radius:999px;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(228,32,46,.8);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#fff">Pedir presupuesto</a>
       <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ toggleMenu }}" aria-label="Menú" style="width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(10,42,94,.5);color:#fff;font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center">{{ menuIcon }}</button>
       </sc-if>
@@ -69,16 +99,12 @@ input,select,textarea,button{font-family:inherit}
   {{ bubbles }}
   <div style="position:relative;flex:1;max-width:1240px;width:100%;margin:0 auto;padding:180px 20px 120px;display:flex;align-items:center;gap:48px;flex-wrap:wrap;pointer-events:none">
     <div style="flex:1 1 520px;display:flex;flex-direction:column;gap:26px;pointer-events:auto">
-      <div data-reveal="up" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(25,195,230,.16);border:1px solid rgba(25,195,230,.45);color:#9EE9F8;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px"><span style="width:8px;height:8px;border-radius:50%;background:#19C3E6"></span>Córdoba capital</span>
-        <span style="color:rgba(255,255,255,.75);font-size:14px;font-weight:600">Av. Ricardo Rojas 8993</span>
-      </div>
-      <h1 class="acua-hero-title" style="margin:0;font-weight:900;font-stretch:120%;text-transform:uppercase;line-height:.9;letter-spacing:-.01em;display:flex;flex-direction:column">
+      <h1 style="margin:0;font-weight:900;font-stretch:120%;text-transform:uppercase;font-size:clamp(36px,6.6vw,92px);line-height:.92;letter-spacing:-.01em;display:flex;flex-direction:column;white-space:nowrap">
         <span data-reveal="up" data-delay="80">Tu <span style="color:#19C3E6">verano</span></span>
         <span data-reveal="up" data-delay="160">empieza en</span>
         <span data-reveal="up" data-delay="240">tu patio</span>
       </h1>
-      <p data-reveal="up" data-delay="320" style="margin:0;max-width:560px;font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:rgba(255,255,255,.86);text-wrap:pretty">Vendemos e instalamos piscinas de fibra de vidrio y de hormigón. Elegí tu modelo, probalo a escala en tu patio y pedinos presupuesto por WhatsApp.</p>
+      <p data-reveal="up" data-delay="320" style="margin:0;max-width:560px;font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:rgba(255,255,255,.86);text-wrap:pretty">Vendemos e instalamos piscinas de fibra de vidrio y de hormigón en Córdoba. Elegí tu modelo, probalo a escala en tu patio y pedinos presupuesto por WhatsApp.</p>
       <div data-reveal="up" data-delay="400" style="display:flex;gap:12px;flex-wrap:wrap">
         <a href="#catalogo" style="display:inline-flex;align-items:center;gap:10px;background:#19C3E6;color:#0A2A5E;font-weight:800;font-size:16px;padding:17px 28px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(25,195,230,.9);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#0A2A5E">Ver catálogo <span style="font-size:18px">→</span></a>
         <a href="#patio" style="display:inline-flex;align-items:center;gap:10px;border:2px solid rgba(255,255,255,.45);color:#fff;font-weight:700;font-size:16px;padding:15px 26px;border-radius:999px;backdrop-filter:blur(6px);background:rgba(255,255,255,.06);transition:background .2s ease" style-hover="background:rgba(255,255,255,.16);color:#fff">¿Qué pileta entra en mi patio?</a>
@@ -98,10 +124,10 @@ input,select,textarea,button{font-family:inherit}
 
 <section id="tipos" data-screen-label="Tipos de pileta" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
   <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:44px">
-    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:1080px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
       <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Dos formas de tener tu pileta</div>
-      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">¿Fibra u <span style="color:#1565C0">hormigón?</span></h2>
-      <p style="margin:0;font-size:18px;line-height:1.6;color:#3C5477">Las dos son <strong style="color:#0A2A5E">PARA TODA LA FAMILIA</strong>. La diferencia está en cómo se hacen y en qué tipo de patio rinden mejor.</p>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(28px,5vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E;white-space:nowrap">¿Fibra u <span style="color:#1565C0">hormigón?</span></h2>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:#3C5477;text-wrap:pretty">Las dos son <strong style="color:#0A2A5E;font-weight:800">para toda la familia</strong>. La diferencia está en cómo se hacen y en qué tipo de patio rinden mejor.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px">
       <div data-reveal="up">
@@ -138,7 +164,7 @@ input,select,textarea,button{font-family:inherit}
               <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D6E8F8;color:#1565C0;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>Terminación con revestimiento símil Bali</div>
               <div style="display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#D6E8F8;color:#1565C0;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span>Se adapta a desniveles y espacios especiales</div>
             </div>
-            <a href="{{ waHormigon }}" target="_blank" rel="noopener" style="margin-top:auto;align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#1565C0;color:#fff;font-weight:800;padding:14px 24px;border-radius:999px" style-hover="color:#fff;background:#0A2A5E">Consultar por hormigón →</a>
+            <a href="#contacto" onClick="{{ goContactHormigon }}" style="margin-top:auto;align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#1565C0;color:#fff;font-weight:800;padding:14px 24px;border-radius:999px" style-hover="color:#fff;background:#0A2A5E">Consultar por hormigón →</a>
           </div>
         </article>
       </div>
@@ -168,6 +194,13 @@ input,select,textarea,button{font-family:inherit}
               </span>
               <span style="font-size:13px;font-weight:700;color:{{ t.sub }}">{{ t.colorsTxt }}</span>
             </span>
+            <span style="flex-basis:100%;display:flex;align-items:center;gap:14px;border-radius:16px;padding:12px 14px;background:{{ t.wBg }};border:1px solid {{ t.wBd }};transition:background .3s ease">
+              <span style="flex:none;width:44px;height:44px;border-radius:12px;background:{{ t.wIconBg }};color:{{ t.wIconFg }};display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+              <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap">
+                <span style="font-weight:900;font-stretch:118%;font-size:30px;line-height:1;color:{{ t.wNum }}">{{ t.years }}</span>
+                <span style="font-weight:900;font-stretch:112%;font-size:16px;text-transform:uppercase;letter-spacing:.04em">años de garantía</span>
+              </span>
+            </span>
           </button>
         </sc-for>
       </div>
@@ -184,7 +217,7 @@ input,select,textarea,button{font-family:inherit}
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
         <span style="font-weight:800;font-size:15px;color:#0A2A5E">{{ resultTxt }}</span>
         <span style="width:1px;height:22px;background:#DCE9F5"></span>
-        <span style="font-size:14px;font-weight:700;color:#3C5477">Colores {{ lineName }}</span>
+        <span style="font-size:14px;font-weight:700;color:#3C5477">{{ groupLabel }}</span>
         <div style="display:flex;gap:8px">
           <sc-for list="{{ lineColors }}" as="c" hint-placeholder-count="4">
             <button onClick="{{ c.pick }}" title="{{ c.name }}" aria-label="{{ c.name }}" style="width:30px;height:30px;border-radius:50%;border:3px solid #fff;cursor:pointer;background:{{ c.hex }};box-shadow:{{ c.ring }};transition:transform .2s ease" style-hover="transform:scale(1.1)"></button>
@@ -203,6 +236,7 @@ input,select,textarea,button{font-family:inherit}
           <button onClick="{{ m.openFicha }}" aria-label="Ver detalles" style="position:relative;border:0;padding:0;cursor:pointer;background:#fff;aspect-ratio:16/10;overflow:hidden;display:block;width:100%">
             <img src="{{ m.photo }}" alt="{{ m.name }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;padding:18px;transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)">
             <span style="position:absolute;top:14px;left:14px;background:#0A2A5E;color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px">{{ m.lineName }}</span>
+            <span style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border:1.5px solid #19C3E6;font-weight:800;font-size:12px;padding:5px 10px 5px 7px;border-radius:999px;box-shadow:0 6px 16px -8px rgba(10,42,94,.5)"><span style="color:#1565C0;display:flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>{{ m.warranty }}</span>
           </button>
           <div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1;border-top:1px solid #EEF4FA">
             <div style="display:flex;flex-direction:column;gap:4px">
@@ -216,13 +250,13 @@ input,select,textarea,button{font-family:inherit}
             </div>
             <div style="display:flex;align-items:center;gap:8px">
               <div style="display:flex;gap:4px">
-                <sc-for list="{{ m.dots }}" as="d" hint-placeholder-count="4"><span style="width:14px;height:14px;border-radius:50%;background:{{ d.hex }};box-shadow:0 0 0 1px rgba(10,42,94,.2)"></span></sc-for>
+                <sc-for list="{{ m.cdots }}" as="d" hint-placeholder-count="4"><button onClick="{{ d.pick }}" title="{{ d.name }}" aria-label="{{ d.name }}" style="width:22px;height:22px;padding:0;border:0;border-radius:50%;cursor:pointer;background:{{ d.hex }};box-shadow:{{ d.ring }};transition:transform .2s ease" style-hover="transform:scale(1.15)"></button></sc-for>
               </div>
               <span style="font-size:13px;font-weight:700;color:#3C5477">{{ m.colorsTxt }}</span>
             </div>
             <div style="display:flex;gap:10px;margin-top:auto">
               <button onClick="{{ m.openFicha }}" style="flex:1;border:0;cursor:pointer;background:#1565C0;color:#fff;font-weight:800;font-size:15px;padding:14px;border-radius:999px;transition:background .2s ease" style-hover="background:#0A2A5E">Ver detalles</button>
-              <a href="{{ m.wa }}" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp" style="flex:none;width:50px;height:50px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center" style-hover="color:#fff;background:#1EBE5A"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"></path></svg></a>
+              <a href="#contacto" onClick="{{ m.goContact }}" aria-label="Pedir presupuesto" style="flex:none;width:50px;height:50px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center" style-hover="color:#fff;background:#1EBE5A"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"></path></svg></a>
             </div>
           </div>
         </article>
@@ -241,21 +275,21 @@ input,select,textarea,button{font-family:inherit}
     <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
       <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#19C3E6"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Planificador a escala</div>
       <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase">¿Qué pileta entra <span style="color:#19C3E6">en tu patio?</span></h2>
-      <p style="margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.8);text-wrap:pretty">Cargá el largo y el ancho de tu patio, elegí un modelo y arrastrá la pileta hasta donde la imaginás. El contorno punteado marca el terreno mínimo que necesita (medida + 60 cm).</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.8);text-wrap:pretty">Cargá el largo y el ancho de tu patio, elegí un modelo y arrastrá la pileta hasta donde la imaginás. El plano muestra el espejo de agua (medida exterior − 40 cm, por los aleros de 20 cm) y la loseta de 50 cm alrededor.</p>
     </div>
     <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
       <div data-reveal="left" style="flex:1 1 300px;max-width:100%;display:flex;flex-direction:column;gap:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px">
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Largo del patio</span>
-            <label style="display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border-radius:12px;padding:6px 10px;font-weight:800"><input type="number" step="0.1" min="2" max="30" value="{{ patioL }}" onChange="{{ onPatioL }}" style="width:64px;border:0;outline:0;font-size:17px;font-weight:800;color:#0A2A5E;background:transparent">m</label>
+            <label style="display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border-radius:12px;padding:6px 10px;font-weight:800"><input type="number" step="0.1" min="2" max="40" value="{{ patioL }}" onChange="{{ onPatioL }}" style="width:64px;border:0;outline:0;font-size:17px;font-weight:800;color:#0A2A5E;background:transparent">m</label>
           </div>
-          <input type="range" min="2" max="20" step="0.1" value="{{ patioL }}" onInput="{{ onPatioL }}" onChange="{{ onPatioL }}" style="width:100%;accent-color:#19C3E6;height:28px">
+          <input type="range" min="2" max="40" step="0.1" value="{{ patioL }}" onInput="{{ onPatioL }}" onChange="{{ onPatioL }}" style="width:100%;accent-color:#19C3E6;height:28px">
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Ancho del patio</span>
-            <label style="display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border-radius:12px;padding:6px 10px;font-weight:800"><input type="number" step="0.1" min="2" max="30" value="{{ patioW }}" onChange="{{ onPatioW }}" style="width:64px;border:0;outline:0;font-size:17px;font-weight:800;color:#0A2A5E;background:transparent">m</label>
+            <label style="display:flex;align-items:center;gap:6px;background:#fff;color:#0A2A5E;border-radius:12px;padding:6px 10px;font-weight:800"><input type="number" step="0.1" min="2" max="40" value="{{ patioW }}" onChange="{{ onPatioW }}" style="width:64px;border:0;outline:0;font-size:17px;font-weight:800;color:#0A2A5E;background:transparent">m</label>
           </div>
-          <input type="range" min="2" max="15" step="0.1" value="{{ patioW }}" onInput="{{ onPatioW }}" onChange="{{ onPatioW }}" style="width:100%;accent-color:#19C3E6;height:28px">
+          <input type="range" min="2" max="40" step="0.1" value="{{ patioW }}" onInput="{{ onPatioW }}" onChange="{{ onPatioW }}" style="width:100%;accent-color:#19C3E6;height:28px">
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
           <span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Modelo</span>
@@ -271,6 +305,17 @@ input,select,textarea,button{font-family:inherit}
             </sc-for>
           </div>
         </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#9EE9F8">Piso del patio</span>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+            <sc-for list="{{ floorOpts }}" as="o" hint-placeholder-count="3">
+              <button onClick="{{ o.pick }}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 6px;border-radius:14px;background:{{ o.bg }};border:2px solid {{ o.bd }};color:{{ o.fg }};font-weight:800;font-size:13px;transition:background .2s ease, border-color .2s ease" style-hover="border-color:#19C3E6">
+                <span style="width:100%;height:30px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);background:{{ o.sw }}"></span>
+                {{ o.label }}
+              </button>
+            </sc-for>
+          </div>
+        </div>
         <div style="border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;transition:background .3s ease;background:{{ status.bg }};border:1px solid {{ status.bd }}">
           <span style="font-weight:900;font-stretch:112%;font-size:18px;text-transform:uppercase;color:{{ status.fg }}">{{ status.title }}</span>
           <span style="font-size:15px;line-height:1.5;color:rgba(255,255,255,.88)">{{ status.text }}</span>
@@ -279,16 +324,26 @@ input,select,textarea,button{font-family:inherit}
           </sc-if>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button onClick="{{ rotatePool }}" title="Rotar pileta" style="flex:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;background:rgba(25,195,230,.14);color:#fff;border:2px solid rgba(25,195,230,.55);font-weight:800;font-size:14px;padding:11px 16px;border-radius:999px;transition:background .2s ease" style-hover="background:rgba(25,195,230,.28)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#19C3E6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 4v5h-5"></path></svg>Rotar · {{ rotLabel }}</button>
           <button onClick="{{ centerPool }}" style="flex:1;cursor:pointer;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);font-weight:800;font-size:14px;padding:12px;border-radius:999px" style-hover="background:rgba(255,255,255,.1)">Centrar pileta</button>
-          <a href="{{ waPlan }}" target="_blank" rel="noopener" style="flex:1.4;text-align:center;background:#E4202E;color:#fff;font-weight:800;font-size:14px;padding:14px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(228,32,46,.8)" style-hover="color:#fff;background:#C81623">Pedir presupuesto</a>
+          <a href="#contacto" onClick="{{ goContactPlan }}" style="flex:1.4;text-align:center;background:#E4202E;color:#fff;font-weight:800;font-size:14px;padding:14px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(228,32,46,.8)" style-hover="color:#fff;background:#C81623">Pedir presupuesto</a>
         </div>
       </div>
       <div data-reveal="up" data-delay="120" style="flex:3 1 480px;max-width:100%;display:flex;flex-direction:column;gap:12px">
+        <div role="tablist" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:6px">
+          <sc-for list="{{ planDims }}" as="d" hint-placeholder-count="3">
+            <button role="tab" onClick="{{ d.pick }}" style="text-align:left;cursor:pointer;border-radius:15px;padding:11px 16px;display:flex;flex-direction:column;gap:2px;background:{{ d.hl }};color:{{ d.fg }};border:1px solid {{ d.bd }};box-shadow:{{ d.shadow }};transition:background .3s ease, color .3s ease, box-shadow .3s ease" style-hover="border-color:#19C3E6">
+              <span style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8">{{ d.k }}</span>
+              <span style="font-weight:900;font-stretch:110%;font-size:20px">{{ d.v }}</span>
+            </button>
+          </sc-for>
+        </div>
         <div style="background:#0D3572;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:14px;box-shadow:inset 0 0 0 1px rgba(25,195,230,.08), 0 30px 60px -30px rgba(0,0,0,.6)">{{ planSvg }}</div>
         <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.72);padding:0 6px">
           <span style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border:1px solid rgba(255,255,255,.35);border-radius:3px"></span>Cuadrícula de 1 m</span>
-          <span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:0;border-top:2px dashed #19C3E6"></span>Terreno mínimo</span>
-          <span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:0;border-top:2px dashed #E4202E"></span>No entra / se sale</span>
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;background:#E8E2D3"></span>Loseta 50 cm</span>
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:0;border-top:2px dashed rgba(255,255,255,.6)"></span>Borde exterior (tocá "Medida exterior")</span>
+          <span style="display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:3px;border:2px solid #E4202E"></span>No entra / se sale</span>
           <span>Arrastrá la pileta con el mouse o el dedo</span>
         </div>
       </div>
@@ -330,7 +385,7 @@ input,select,textarea,button{font-family:inherit}
       <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5vw,60px);line-height:.95;text-transform:uppercase">¿Cansado de <span style="color:#19C3E6">pintar tu piscina?</span></h2>
       <p style="margin:0;font-size:18px;line-height:1.6;color:rgba(255,255,255,.84);text-wrap:pretty">Renovala con revestimiento símil Bali. Dejás atrás la pintura de cada temporada y tu pileta de hormigón queda con una terminación nueva.</p>
       <div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:#9EE9F8"><span style="width:10px;height:10px;border-radius:50%;background:#E4202E"></span>Obra real: 10 × 5 m · Mendiolaza</div>
-      <a href="{{ waRenov }}" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#E4202E;color:#fff;font-weight:800;padding:16px 26px;border-radius:999px;box-shadow:0 12px 28px -12px rgba(228,32,46,.9)" style-hover="color:#fff;background:#C81623">Consultar renovación</a>
+      <a href="#contacto" onClick="{{ goContactRenov }}" style="align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#E4202E;color:#fff;font-weight:800;padding:16px 26px;border-radius:999px;box-shadow:0 12px 28px -12px rgba(228,32,46,.9)" style-hover="color:#fff;background:#C81623">Consultar renovación</a>
     </div>
     <div data-reveal="scale" data-delay="120" style="flex:1.3 1 440px;max-width:100%;display:flex;flex-direction:column;gap:12px">
       <div onPointerDown="{{ baDown }}" onPointerMove="{{ baMove }}" onPointerUp="{{ baUp }}" onPointerCancel="{{ baUp }}" style="position:relative;aspect-ratio:4/3;border-radius:26px;overflow:hidden;cursor:ew-resize;touch-action:pan-y;user-select:none;box-shadow:0 40px 70px -30px rgba(0,0,0,.6);border:4px solid rgba(255,255,255,.1)">
@@ -387,25 +442,42 @@ input,select,textarea,button{font-family:inherit}
       <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:680px">
         <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Tienda · Av. Ricardo Rojas 8993</div>
         <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Insumos <span style="color:#1565C0">y limpieza</span></h2>
-        <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477;text-wrap:pretty">Todo para el mantenimiento de tu pileta y productos de limpieza para tu casa. Consultá stock y marcas por WhatsApp o pasá por el local.</p>
-      </div>
-      <div data-reveal="up" style="display:flex;background:#fff;border:1px solid #DCE9F5;border-radius:999px;padding:6px;gap:4px">
-        <sc-for list="{{ shopTabs }}" as="t" hint-placeholder-count="2">
-          <button onClick="{{ t.pick }}" style="border:0;cursor:pointer;font-weight:800;font-size:15px;padding:12px 20px;border-radius:999px;transition:background .25s ease, color .25s ease;background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
-        </sc-for>
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477;text-wrap:pretty">Todo para el mantenimiento de tu pileta. Consultá stock y marcas por WhatsApp o pasá por el local.</p>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
       <sc-for list="{{ shopItems }}" as="p" hint-placeholder-count="6">
-        <article style="background:#fff;border:1px solid #DCE9F5;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:transform .3s ease, box-shadow .3s ease" style-hover="transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(10,42,94,.5)">
-          <span style="width:46px;height:46px;border-radius:50% 0 50% 50%;transform:rotate(-45deg);background:{{ p.tint }}"></span>
+        <article style="position:relative;background:{{ p.bg }};border:2px solid {{ p.bd }};border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;animation:{{ p.anim }};transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease" style-hover="transform:translateY(-4px);box-shadow:0 24px 40px -28px rgba(10,42,94,.5)">
+          <sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;background:#19C3E6;color:#0A2A5E;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center">✓</span>
+          </sc-if>
+          <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
+            <div style="aspect-ratio:4/3;width:100%;border-radius:16px;overflow:hidden;background:#EAF4FA;border:1px solid #DCE9F5;color:transparent">
+              <image-slot id="{{ p.slot }}" shape="rect" src="{{ p.img }}" placeholder="{{ p.ph }}" alt="{{ p.alt }}" loading="lazy"></image-slot>
+            </div>
+          </sc-if>
+          <sc-if value="{{ p.noPhoto }}" hint-placeholder-val="{{ true }}">
+            <span style="width:46px;height:46px;border-radius:50% 0 50% 50%;transform:rotate(-45deg);background:{{ p.tint }}"></span>
+          </sc-if>
           <h3 style="margin:0;font-weight:900;font-stretch:110%;font-size:20px;text-transform:uppercase;line-height:1.1;color:#0A2A5E">{{ p.name }}</h3>
           <p style="margin:0;font-size:15px;line-height:1.5;color:#3C5477">{{ p.desc }}</p>
-          <a href="{{ p.wa }}" target="_blank" rel="noopener" style="margin-top:auto;font-weight:800;font-size:14px;color:#1565C0;display:inline-flex;gap:6px;align-items:center" style-hover="color:#19C3E6">Consultar →</a>
+          <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+            <sc-if value="{{ p.on }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;background:#fff;border:1px solid #CFE2F5;border-radius:999px;padding:3px">
+                <button onClick="{{ p.dec }}" aria-label="Restar" style="width:34px;height:34px;border:0;border-radius:50%;background:#F3F8FC;color:#0A2A5E;font-size:18px;font-weight:800;cursor:pointer" style-hover="background:#DCE9F5">−</button>
+                <span style="min-width:34px;text-align:center;font-weight:900;font-size:16px;color:#0A2A5E">{{ p.qty }}</span>
+                <button onClick="{{ p.inc }}" aria-label="Sumar" style="width:34px;height:34px;border:0;border-radius:50%;background:#F3F8FC;color:#0A2A5E;font-size:18px;font-weight:800;cursor:pointer" style-hover="background:#DCE9F5">+</button>
+              </div>
+            </sc-if>
+            <button onClick="{{ p.toggle }}" style="border:0;cursor:pointer;font-weight:800;font-size:14px;padding:11px 18px;border-radius:999px;background:{{ p.btnBg }};color:{{ p.btnFg }};transition:background .2s ease">{{ p.btnLabel }}</button>
+          </div>
         </article>
       </sc-for>
     </div>
-    <span style="font-size:13px;font-weight:700;color:#E4202E">Listado de productos y marcas a completar.</span>
+    <sc-if value="{{ shopHasMore }}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{ shopToggle }}" aria-expanded="{{ shopExpanded }}" aria-controls="insumos" style="align-self:center;display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;background:#0A2A5E;color:#fff;font-weight:800;font-size:16px;padding:17px 30px;border-radius:999px;box-shadow:0 14px 30px -14px rgba(10,42,94,.8);transition:transform .2s ease, background .2s ease" style-hover="transform:translateY(-2px);background:#1565C0">{{ shopMoreLabel }}<span style="display:inline-block;transition:transform .3s ease;transform:rotate({{ shopArrowRot }}deg)">↓</span></button>
+    </sc-if>
+    <span style="font-size:14px;color:#3C5477">Agregá todos los productos que necesites y consultá precio y promociones en un solo mensaje.</span>
   </div>
 </section>
 <div>{{ waveShop }}</div>
@@ -435,20 +507,78 @@ input,select,textarea,button{font-family:inherit}
 </section>
 <div>{{ waveFaq }}</div>
 
-<section id="contacto" data-screen-label="Contacto" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
+<section id="donde" data-screen-label="Dónde estamos" style="background:#fff;padding:64px 20px 96px;scroll-margin-top:70px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Dónde estamos</div>
+      <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Vení a <span style="color:#1565C0">conocernos</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:28px;align-items:stretch">
+      <div data-reveal="scale" style="position:relative;border-radius:28px;overflow:hidden;min-height:360px;background:#EAF4FA;box-shadow:0 40px 70px -36px rgba(10,42,94,.55)">
+        <img src="img/local-acua.png" alt="Local de Acua Piscinas en Av. Ricardo Rojas 8993" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.04)">
+        <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(10,42,94,.85) 100%)"></div>
+        <div style="position:absolute;left:20px;right:20px;bottom:18px;pointer-events:none;display:flex;align-items:center;gap:10px;color:#fff">
+          <span style="width:10px;height:10px;border-radius:50%;background:#19C3E6;box-shadow:0 0 0 6px rgba(25,195,230,.25)"></span>
+          <span style="font-weight:800;font-size:15px">Av. Ricardo Rojas 8993 · Córdoba</span>
+        </div>
+      </div>
+      <div data-reveal="up" data-delay="120" style="display:flex;flex-direction:column;gap:22px;justify-content:center">
+        <p style="margin:0;font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:#3C5477;text-wrap:pretty">Somos un local cordobés dedicado a que disfrutes el verano en casa. Te asesoramos para elegir tu pileta, de fibra o de hormigón, y te acompañamos después con todo lo que necesitás para mantenerla: insumos, accesorios y productos de limpieza. Vení a conocernos, te esperamos con el mate listo.</p>
+        <div style="display:flex;flex-direction:column;border-top:1px solid #DCE9F5">
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #DCE9F5">
+            <span style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F3FB;color:#1565C0;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Dirección</span><span style="font-weight:800;font-size:17px;color:#0A2A5E">Av. Ricardo Rojas 8993, Córdoba capital</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #DCE9F5">
+            <span style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F3FB;color:#1565C0;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Horarios</span>
+              <div style="display:flex;gap:10px 28px;flex-wrap:wrap">
+                <span style="font-size:15px;color:#3C5477">Lunes a viernes <b style="color:#0A2A5E;font-weight:800">9 a 19 h</b></span>
+                <span style="font-size:15px;color:#3C5477">Sábados <b style="color:#0A2A5E;font-weight:800">9 a 13 h</b></span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #DCE9F5">
+            <span style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F3FB;color:#1565C0;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-2-5H7l-2 5z"></path><path d="M3 12h18"></path><circle cx="7.5" cy="17" r="1.5"></circle><circle cx="16.5" cy="17" r="1.5"></circle></svg></span>
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Estacionamiento</span><span style="font-weight:800;font-size:17px;color:#0A2A5E">Para clientes, frente al local</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#3C5477">En el local encontrás</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span style="font-size:14px;font-weight:700;color:#0A2A5E;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:999px;padding:8px 14px">Piscinas</span>
+              <span style="font-size:14px;font-weight:700;color:#0A2A5E;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:999px;padding:8px 14px">Bombas</span>
+              <span style="font-size:14px;font-weight:700;color:#0A2A5E;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:999px;padding:8px 14px">Filtros</span>
+              <span style="font-size:14px;font-weight:700;color:#0A2A5E;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:999px;padding:8px 14px">Cloro</span>
+              <span style="font-size:14px;font-weight:700;color:#0A2A5E;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:999px;padding:8px 14px">Playa de arena</span>
+              <span style="font-size:14px;font-weight:700;color:#0A2A5E;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:999px;padding:8px 14px">Jacuzzis</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Av.%20Ricardo%20Rojas%208993%2C%20C%C3%B3rdoba%2C%20Argentina" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#1565C0;color:#fff;font-weight:800;font-size:16px;padding:16px 26px;border-radius:999px;box-shadow:0 14px 30px -14px rgba(21,101,192,.9);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#fff;background:#0A2A5E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+    <div data-reveal="up" style="border-radius:28px;overflow:hidden;border:1px solid #DCE9F5;height:clamp(280px,38vw,420px);background:#EAF4FA">
+      <iframe title="Mapa Acua Piscinas" src="https://www.google.com/maps?q=Av.%20Ricardo%20Rojas%208993%2C%20C%C3%B3rdoba%2C%20Argentina&amp;output=embed" loading="lazy" style="width:100%;height:100%;border:0;display:block"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" data-screen-label="Contacto" style="background:#F3F8FC;padding:96px 20px 96px;scroll-margin-top:70px">
   <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
     <div data-reveal="up" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
       <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1565C0"><span style="width:28px;height:3px;border-radius:2px;background:#19C3E6"></span>Contacto</div>
       <h2 style="margin:0;font-weight:900;font-stretch:118%;font-size:clamp(34px,5.4vw,64px);line-height:.95;text-transform:uppercase;color:#0A2A5E">Pedí tu <span style="color:#1565C0">presupuesto</span></h2>
       <p style="margin:0;font-size:17px;line-height:1.6;color:#3C5477">Completá tus datos y te abrimos WhatsApp con el mensaje listo para enviar.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;align-items:start">
       <form data-reveal="up" onSubmit="{{ onSubmit }}" style="background:#0A2A5E;color:#fff;border-radius:28px;padding:30px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 60px -30px rgba(10,42,94,.6)">
         <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Nombre
-          <input value="{{ form.nombre }}" onChange="{{ onNombre }}" required="" placeholder="Tu nombre" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0" style-focus="border-color:#19C3E6">
+          <input id="form-nombre" value="{{ form.nombre }}" onChange="{{ onNombre }}" required="{{ true }}" placeholder="Tu nombre" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0" style-focus="border-color:#19C3E6">
         </label>
         <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Localidad o barrio
-          <input value="{{ form.localidad }}" onChange="{{ onLocalidad }}" placeholder="Ej: Argüello, Mendiolaza…" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0" style-focus="border-color:#19C3E6">
+          <input id="form-localidad" value="{{ form.localidad }}" onChange="{{ onLocalidad }}" required="{{ true }}" placeholder="Ej: Argüello, Mendiolaza…" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0" style-focus="border-color:#19C3E6">
         </label>
         <label style="display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9EE9F8">Modelo de interés
           <select value="{{ form.modelo }}" onChange="{{ onModelo }}" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid transparent;border-radius:14px;padding:14px 16px;outline:0;background:#fff;cursor:pointer">
@@ -461,15 +591,26 @@ input,select,textarea,button{font-family:inherit}
         <button type="submit" style="margin-top:6px;border:0;cursor:pointer;background:#E4202E;color:#fff;font-weight:900;font-size:17px;padding:18px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(228,32,46,.9);transition:transform .2s ease" style-hover="transform:translateY(-2px)">Enviar por WhatsApp</button>
       </form>
       <div data-reveal="up" data-delay="120" style="display:flex;flex-direction:column;gap:16px">
-        <div style="border-radius:28px;overflow:hidden;border:1px solid #DCE9F5;height:280px;background:#EAF4FA">
-          <iframe title="Mapa Acua Piscinas" src="https://www.google.com/maps?q=Av.%20Ricardo%20Rojas%208993%2C%20C%C3%B3rdoba%2C%20Argentina&amp;output=embed" loading="lazy" style="width:100%;height:100%;border:0;display:block"></iframe>
+        <div style="background:#fff;border:1px solid #DCE9F5;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px">
+          <span style="font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1565C0">Cómo sigue</span>
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:34px;height:34px;border-radius:50%;background:#0A2A5E;color:#19C3E6;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center">1</span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:16px;color:#0A2A5E">Recibimos tu consulta</span><span style="font-size:14px;line-height:1.5;color:#3C5477">Te llega el mensaje armado con tus datos y el modelo que elegiste.</span></div></div>
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:34px;height:34px;border-radius:50%;background:#0A2A5E;color:#19C3E6;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center">2</span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:16px;color:#0A2A5E">Te asesoramos</span><span style="font-size:14px;line-height:1.5;color:#3C5477">Te ayudamos a definir el modelo según tu patio y lo que buscás.</span></div></div>
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:34px;height:34px;border-radius:50%;background:#0A2A5E;color:#19C3E6;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center">3</span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:16px;color:#0A2A5E">Te pasamos el presupuesto</span><span style="font-size:14px;line-height:1.5;color:#3C5477">Con el detalle de la pileta, la instalación y los adicionales.</span></div></div>
+          <div style="display:flex;align-items:center;gap:12px;background:#F3F8FC;border-radius:16px;padding:14px 16px">
+            <span style="font-size:14px;line-height:1.5;color:#3C5477"><b style="color:#0A2A5E">Tip:</b> si usaste el <a href="#patio" style="font-weight:800">planificador a escala</a>, contanos las medidas de tu patio en el mensaje.</span>
+          </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px">
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Ricardo%20Rojas%208993%20C%C3%B3rdoba" target="_blank" rel="noopener" style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;color:#0A2A5E" style-hover="border-color:#19C3E6;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Local</span><span style="font-weight:800;font-size:17px">Av. Ricardo Rojas 8993</span><span style="font-size:14px;color:#3C5477">Córdoba capital</span></a>
-          <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;color:#0A2A5E" style-hover="border-color:#19C3E6;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">WhatsApp</span><span style="font-weight:800;font-size:17px">351 517 1412</span><span style="font-size:14px;color:#3C5477">Escribinos cuando quieras</span></a>
-          <div style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Horarios</span><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font-size:14px;color:#3C5477">Lunes a viernes</span><span style="font-weight:800;font-size:17px;white-space:nowrap">9 a 19 hs</span></div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font-size:14px;color:#3C5477">Sábados</span><span style="font-weight:800;font-size:17px;white-space:nowrap">9 a 13 hs</span></div></div>
-          <a href="https://instagram.com/acua.piscinas" target="_blank" rel="noopener" style="background:#F3F8FC;border:1px solid #DCE9F5;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;color:#0A2A5E" style-hover="border-color:#19C3E6;color:#0A2A5E"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Instagram</span><span style="font-weight:800;font-size:17px">@acua.piscinas</span><span style="font-size:14px;color:#3C5477">Obras y novedades</span></a>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px">
+          <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="background:#25D366;border-radius:22px;padding:20px 22px;display:flex;align-items:center;gap:14px;color:#fff;box-shadow:0 18px 34px -20px rgba(37,211,102,.9);transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#fff">
+            <span style="flex:none;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"></path></svg></span>
+            <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9">WhatsApp directo</span><span style="font-weight:900;font-size:18px">351 517 1412</span></span>
+          </a>
+          <a href="https://instagram.com/acua.piscinas" target="_blank" rel="noopener" style="background:#fff;border:1px solid #DCE9F5;border-radius:22px;padding:20px 22px;display:flex;align-items:center;gap:14px;color:#0A2A5E;transition:transform .2s ease, border-color .2s ease" style-hover="transform:translateY(-2px);border-color:#19C3E6;color:#0A2A5E">
+            <span style="flex:none;width:44px;height:44px;border-radius:14px;background:#E6F3FB;color:#1565C0;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg></span>
+            <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1565C0">Instagram</span><span style="font-weight:900;font-size:18px">@acua.piscinas</span></span>
+          </a>
         </div>
+        <a href="#donde" style="align-self:flex-start;font-weight:800;font-size:15px;color:#1565C0" style-hover="color:#19C3E6">¿Preferís venir al local? Ver dónde estamos →</a>
       </div>
     </div>
   </div>
@@ -490,6 +631,58 @@ input,select,textarea,button{font-family:inherit}
 </footer>
 
 {{ waFab }}
+
+<sc-if value="{{ cartBar }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:65;width:calc(100% - 120px);max-width:720px;background:#0A2A5E;color:#fff;border:1px solid rgba(25,195,230,.4);border-radius:999px;padding:8px 8px 8px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 24px 50px -16px rgba(0,0,0,.55)">
+    <span style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px"><span style="min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:#19C3E6;color:#0A2A5E;display:flex;align-items:center;justify-content:center;font-weight:900">{{ cartCount }}</span>{{ cartTxt }}</span>
+    <div style="display:flex;gap:8px">
+      <button onClick="{{ openCart }}" style="border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-weight:800;font-size:14px;padding:11px 16px;border-radius:999px;cursor:pointer" style-hover="background:rgba(255,255,255,.1)">Ver lista</button>
+      <a href="{{ cartWa }}" target="_blank" rel="noopener" onClick="{{ cartSent }}" style="background:#25D366;color:#fff;font-weight:800;font-size:14px;padding:12px 18px;border-radius:999px;white-space:nowrap" style-hover="color:#fff;background:#1EBE5A">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeCart }}" style="position:fixed;inset:0;z-index:85;background:rgba(6,24,56,.6);backdrop-filter:blur(4px);display:flex;justify-content:flex-end">
+    <aside onClick="{{ stop }}" style="width:100%;max-width:440px;height:100%;background:#fff;color:#0A2A5E;display:flex;flex-direction:column;box-shadow:-20px 0 60px -20px rgba(0,0,0,.5)">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:22px 24px;border-bottom:1px solid #DCE9F5">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1565C0">Tu consulta</span>
+          <span style="font-weight:900;font-stretch:112%;font-size:24px;text-transform:uppercase">Lista de insumos</span>
+        </div>
+        <button onClick="{{ closeCart }}" aria-label="Cerrar" style="width:44px;height:44px;border-radius:50%;border:0;background:#F3F8FC;color:#0A2A5E;font-size:18px;cursor:pointer">✕</button>
+      </div>
+      <div style="flex:1;overflow:auto;padding:16px 24px;display:flex;flex-direction:column;gap:10px">
+        <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0;font-size:15px;color:#3C5477">Todavía no agregaste productos.</p>
+        </sc-if>
+        <sc-for list="{{ cartItems }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:12px;background:#F3F8FC;border:1px solid #DCE9F5;border-radius:16px;padding:12px 14px">
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0">
+              <span style="font-weight:800;font-size:15px">{{ c.name }}</span>
+              <span style="font-size:12px;color:#3C5477">{{ c.group }}</span>
+            </div>
+            <div style="display:flex;align-items:center;background:#fff;border:1px solid #CFE2F5;border-radius:999px;padding:2px">
+              <button onClick="{{ c.dec }}" aria-label="Restar" style="width:30px;height:30px;border:0;border-radius:50%;background:transparent;color:#0A2A5E;font-size:16px;font-weight:800;cursor:pointer">−</button>
+              <span style="min-width:26px;text-align:center;font-weight:900">{{ c.qty }}</span>
+              <button onClick="{{ c.inc }}" aria-label="Sumar" style="width:30px;height:30px;border:0;border-radius:50%;background:transparent;color:#0A2A5E;font-size:16px;font-weight:800;cursor:pointer">+</button>
+            </div>
+            <button onClick="{{ c.remove }}" aria-label="Quitar" style="width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:#E4202E;font-size:16px;cursor:pointer" style-hover="background:#FDECEE">✕</button>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:18px 24px 24px;border-top:1px solid #DCE9F5;display:flex;flex-direction:column;gap:12px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#3C5477">Nombre
+          <input value="{{ cartName }}" onChange="{{ onCartName }}" placeholder="Tu nombre" style="font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid #DCE9F5;border-radius:14px;padding:12px 14px;outline:0" style-focus="border-color:#19C3E6">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#3C5477">Comentario
+          <textarea value="{{ cartNote }}" onChange="{{ onCartNote }}" rows="3" placeholder="(Por ejemplo: tamaño de la pileta 6 × 3 m, de fibra, el agua está verde…)" style="font-size:15px;font-weight:500;letter-spacing:0;text-transform:none;color:#0A2A5E;border:2px solid #DCE9F5;border-radius:14px;padding:12px 14px;outline:0;resize:vertical" style-focus="border-color:#19C3E6"></textarea>
+        </label>
+        <a href="{{ cartWa }}" target="_blank" rel="noopener" onClick="{{ cartSent }}" style="text-align:center;background:#25D366;color:#fff;font-weight:900;font-size:16px;padding:16px;border-radius:999px;box-shadow:0 12px 26px -12px rgba(37,211,102,.9)" style-hover="color:#fff;background:#1EBE5A">Consultar precio por WhatsApp</a>
+      </div>
+    </aside>
+  </div>
+</sc-if>
 
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ lbClose }}" style="position:fixed;inset:0;z-index:90;background:rgba(6,24,56,.92);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px">
@@ -529,7 +722,7 @@ input,select,textarea,button{font-family:inherit}
       </div>
       <div style="flex:1 1 360px;padding:32px 28px;display:flex;flex-direction:column;gap:20px">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <span style="align-self:flex-start;background:#0A2A5E;color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px">{{ ficha.lineLabel }}</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="background:#0A2A5E;color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px">{{ ficha.lineLabel }}</span><span style="display:flex;align-items:center;gap:6px;background:#E6F7FC;color:#0A2A5E;border:1.5px solid #19C3E6;font-weight:800;font-size:12px;padding:5px 10px 5px 7px;border-radius:999px"><span style="color:#1565C0;display:flex"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>{{ ficha.warranty }}</span></div>
           <h3 style="margin:0;font-weight:900;font-stretch:115%;font-size:clamp(28px,3.4vw,38px);text-transform:uppercase;line-height:1">{{ ficha.name }}</h3>
           <p style="margin:0;font-size:16px;line-height:1.55;color:#3C5477">{{ ficha.desc }}</p>
         </div>
@@ -554,7 +747,7 @@ input,select,textarea,button{font-family:inherit}
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto">
           <button onClick="{{ ficha.tryPlan }}" style="flex:1 1 160px;cursor:pointer;background:#fff;color:#1565C0;border:2px solid #CFE2F5;font-weight:800;font-size:15px;padding:14px;border-radius:999px" style-hover="border-color:#19C3E6">Probar en mi patio</button>
-          <a href="{{ ficha.wa }}" target="_blank" rel="noopener" style="flex:1 1 160px;text-align:center;background:#E4202E;color:#fff;font-weight:800;font-size:15px;padding:16px;border-radius:999px" style-hover="color:#fff;background:#C81623">Consultar por WhatsApp</a>
+          <a href="#contacto" onClick="{{ ficha.goContact }}" style="flex:1 1 160px;text-align:center;background:#E4202E;color:#fff;font-weight:800;font-size:15px;padding:16px;border-radius:999px" style-hover="color:#fff;background:#C81623">Pedir presupuesto</a>
         </div>
       </div>
     </div>
@@ -580,11 +773,10 @@ const LINE_DEFS = [
   { id: 'Premium', label: 'PREMIUM', cats: ['Exclusivo', 'Rectas', 'Solárium'] }
 ];
 const LINE_LABEL = { EcoLine: 'ECO LINE', Premium: 'PREMIUM' };
+const WARRANTY = { EcoLine: 5, Premium: 8 };
 const ECAT = { 'Clásica': 'Línea Clásica', 'Solárium': 'Línea Solárium', 'Mini Piscina': 'Mini Piscina' };
-// Premium: Solarium M / L / XL / Mix quedan como subtipo (fam) dentro de la categoría única 'Solárium'
-const PCAT = fam => /^Solarium/.test(fam) ? 'Solárium' : fam;
-const E = (id, fam, size, L, W, D, steps, o) => Object.assign({ id: 'e-' + id, line: 'EcoLine', fam, cat: ECAT[fam], name: fam === 'Mini Piscina' ? 'Mini Piscina' : fam + ' ' + size, L, W, D, steps, cap: null, sol: null, photos: ['img/cat/e-' + id + '.png'] }, o || {});
-const P = (id, fam, L, W, D, cap, sol, steps, o) => Object.assign({ id: 'p-' + id, line: 'Premium', fam, cat: PCAT(fam), name: id.toUpperCase(), L, W, D, cap, sol, steps, photos: ['img/cat/p-' + id + '.png'] }, o || {});
+const E = (id, fam, size, L, W, D, steps, o) => Object.assign({ id: 'e-' + id, line: 'EcoLine', fam, cat: ECAT[fam], name: fam === 'Mini Piscina' ? 'Mini ' + size : fam + ' ' + size, L, W, D, steps, cap: null, sol: null, photos: ['img/cat/e-' + id + '.png'] }, o || {});
+const P = (id, fam, L, W, D, cap, sol, steps, o) => Object.assign({ id: 'p-' + id, line: 'Premium', fam, cat: fam.indexOf('Solarium') === 0 ? 'Solárium' : fam, name: id.toUpperCase(), L, W, D, cap, sol, steps, photos: ['img/cat/p-' + id + '.png'] }, o || {});
 const MODELS = [
   E('clasica-s', 'Clásica', 'S', 420, 230, 140, 4),
   E('clasica-m', 'Clásica', 'M', 570, 280, 140, 4),
@@ -596,6 +788,10 @@ const MODELS = [
   E('solarium-spa', 'Solárium', 'SPA', 700, 300, 140, 3, { sol: '1,00 m', solarium: true, extras: ['Asiento interno: 30 cm'] }),
   E('solarium-max', 'Solárium', 'MAX', 865, 330, 140, 3, { sol: '1,10 m', solarium: true }),
   E('mini-m', 'Mini Piscina', 'M', 350, 200, 70, null, { mini: true, extras: ['Con equipamiento completo instalado', '¡Lista para usar!', 'Asientos internos: 40 cm', 'Antideslizante símil madera'], photos: ['img/cat/e-mini-m.png', 'img/cat/e-mini-m-b.png'] }),
+  E('mini-260', 'Mini Piscina', '260', 260, 205, 70, null, { mini: true, cap: 2100, extras: ['Asiento interno: 40 cm', 'Estado: Lista para usar'] }),
+  E('mini-330', 'Mini Piscina', '330', 330, 205, 70, null, { mini: true, cap: 1800, extras: ['Asiento interno: 40 cm', 'Estado: Lista para usar'] }),
+  E('mini-360', 'Mini Piscina', '360', 360, 230, 80, null, { mini: true, cap: 2000, extras: ['Asiento interno: 40 cm', 'Estado: Lista para usar'] }),
+  E('mini-360d', 'Mini Piscina', '360D', 360, 205, 70, null, { mini: true, cap: 3100, extras: ['Asiento interno: Doble', 'Estado: Lista para usar'] }),
   P('x300', 'Exclusivo', 300, 200, 120, 3500, 'No', 3),
   P('r460', 'Rectas', 470, 268, 132, 10000, null, 4, { extras: ['Primer escalón: 33 cm'] }),
   P('r700', 'Rectas', 700, 325, 140, 22000, 'No', 4),
@@ -612,13 +808,81 @@ const MODELS = [
   P('m710', 'Solarium Mix', 710, 320, 140, 24000, '1,70 × 1,00 m', 4, { solarium: true })
 ];
 const SORTS = [
-  { id: 'size-asc', label: 'Tamaño: menor a mayor' },
+  { id: 'cat-asc', label: 'Orden del catálogo' },
   { id: 'largo-asc', label: 'Largo ↑' }, { id: 'largo-desc', label: 'Largo ↓' },
   { id: 'cap-asc', label: 'Capacidad ↑' }, { id: 'cap-desc', label: 'Capacidad ↓' }
 ];
-// Tamaño = superficie (largo × ancho); desempata por largo, ancho, capacidad y orden de carga
-const bySize = (a, b) => (a.L * a.W - b.L * b.W) || (a.L - b.L) || (a.W - b.W) || ((a.cap || 0) - (b.cap || 0)) || (MODELS.indexOf(a) - MODELS.indexOf(b));
-const GAP = 30; // 30 cm por lado = medida + 60 cm
+// Medida exterior (catálogo) incluye alero de 20 cm por lado.
+// Espejo de agua = exterior − 40 cm. Loseta de 50 cm desde el borde del agua → sobresale 30 cm del exterior.
+const ALERO = 20, LOSETA = 50;
+const GAP = LOSETA - ALERO; // 30 cm por lado: loseta a loseta = exterior + 60 cm
+
+// Piso del patio: plano (cuadrícula), piedra o césped — todo en cm
+const FLOORS = [
+  { id: 'plano', label: 'Plano', sw: 'linear-gradient(rgba(158,233,248,.35) 1px, transparent 1px) 0 0/9px 9px, linear-gradient(90deg, rgba(158,233,248,.35) 1px, transparent 1px) 0 0/9px 9px, #0D3572' },
+  { id: 'piedra', label: 'Piedra', sw: 'linear-gradient(#8E877A 1px, transparent 1px) 0 0/11px 11px, linear-gradient(90deg, #8E877A 1px, transparent 1px) 0 0/11px 11px, linear-gradient(135deg, #C2BBAE, #ABA394)' },
+  { id: 'cesped', label: 'Césped', sw: 'repeating-linear-gradient(90deg, #5FA344 0 7px, #56993C 7px 14px)' }
+];
+function floorG(PL, PW, kind, fs) {
+  const border = h('rect', { key: 'bd', x: 0, y: 0, width: PL, height: PW, fill: 'none', stroke: '#fff', strokeWidth: fs * 0.14, rx: 4 });
+  if (kind !== 'piedra' && kind !== 'cesped') return h('g', null, h('rect', { x: 0, y: 0, width: PL, height: PW, fill: 'rgba(158,233,248,.07)', rx: 4 }), border);
+  let pat;
+  if (kind === 'piedra') {
+    const tones = ['#C2BBAE', '#B4AC9E', '#ABA394', '#BDB5A7', '#B8B0A2', '#C6BFB2'];
+    const tiles = [];
+    for (let r = 0; r < 2; r++) for (let c = -1; c < 3; c++) {
+      const x = c * 50 + (r ? 25 : 0), y = r * 50;
+      tiles.push(h('rect', { key: r + '-' + c, x: x + 1.5, y: y + 1.5, width: 47, height: 47, rx: 3, fill: tones[(r * 3 + c + 6) % tones.length] }));
+    }
+    pat = h('pattern', { id: 'flr-piedra', width: 100, height: 100, patternUnits: 'userSpaceOnUse' }, h('rect', { width: 100, height: 100, fill: '#8E877A' }), tiles);
+  } else {
+    let sd = 7; const rnd = () => { sd = (sd * 16807) % 2147483647; return sd / 2147483647; };
+    const blades = [];
+    for (let i = 0; i < 70; i++) { const x = rnd() * 100, y = rnd() * 100, l = 3 + rnd() * 4, a = (rnd() - .5) * .8; blades.push(h('line', { key: i, x1: x, y1: y, x2: x + Math.sin(a) * l, y2: y - Math.cos(a) * l, stroke: i % 3 ? '#4A8A32' : '#7CBF5A', strokeWidth: 1.4, strokeLinecap: 'round' })); }
+    pat = h('pattern', { id: 'flr-cesped', width: 100, height: 100, patternUnits: 'userSpaceOnUse' },
+      h('rect', { width: 50, height: 100, fill: '#5FA344' }), h('rect', { x: 50, width: 50, height: 100, fill: '#56993C' }), blades);
+  }
+  const ov = [], oc = kind === 'piedra' ? 'rgba(10,42,94,.16)' : 'rgba(255,255,255,.16)';
+  for (let x = 100; x < PL; x += 100) ov.push(h('line', { key: 'ox' + x, x1: x, y1: 0, x2: x, y2: PW, stroke: oc, strokeWidth: fs * 0.05 }));
+  for (let y = 100; y < PW; y += 100) ov.push(h('line', { key: 'oy' + y, x1: 0, y1: y, x2: PL, y2: y, stroke: oc, strokeWidth: fs * 0.05 }));
+  return h('g', null, h('defs', null, pat), h('rect', { x: 0, y: 0, width: PL, height: PW, fill: `url(#flr-${kind})`, rx: 4 }), ov, border);
+}
+
+function planPoolG(x, y, L, W, hex, sol, fs, bad, props, view) {
+  const ox = x - GAP, oy = y - GAP, OL = L + 2 * GAP, OW = W + 2 * GAP;
+  const wx = x + ALERO, wy = y + ALERO, WL = L - 2 * ALERO, WW = W - 2 * ALERO;
+  const kids = [
+    h('rect', { key: 'sh', x: ox + 6, y: oy + 10, width: OL, height: OW, rx: 6, fill: 'rgba(0,0,0,.25)' }),
+    h('rect', { key: 'los', x: ox, y: oy, width: OL, height: OW, rx: 6, fill: '#E8E2D3', stroke: bad ? RED : '#C9BFA8', strokeWidth: bad ? fs * 0.14 : 2, style: { transition: 'stroke .3s' } })
+  ];
+  // juntas de loseta cada 50 cm
+  const joint = { stroke: '#BFB49B', strokeWidth: Math.max(1.5, fs * 0.04) };
+  for (let t = ox + LOSETA; t < ox + OL - 1; t += LOSETA) {
+    kids.push(h('line', Object.assign({ key: 'jt' + t, x1: t, y1: oy, x2: t, y2: wy }, joint)));
+    kids.push(h('line', Object.assign({ key: 'jb' + t, x1: t, y1: wy + WW, x2: t, y2: oy + OW }, joint)));
+  }
+  for (let t = oy + LOSETA; t < oy + OW - 1; t += LOSETA) {
+    kids.push(h('line', Object.assign({ key: 'jl' + t, x1: ox, y1: t, x2: wx, y2: t }, joint)));
+    kids.push(h('line', Object.assign({ key: 'jr' + t, x1: wx + WL, y1: t, x2: ox + OL, y2: t }, joint)));
+  }
+  const tr = { transition: 'all .35s ease' };
+  // resaltado de loseta (vista "loseta a loseta")
+  kids.push(h('rect', { key: 'loshl', x: ox, y: oy, width: OL, height: OW, rx: 6, fill: view === 'los' ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,0)', stroke: view === 'los' ? CEL : 'rgba(25,195,230,0)', strokeWidth: fs * 0.22, style: Object.assign({ filter: view === 'los' ? 'drop-shadow(0 0 10px rgba(25,195,230,.9))' : 'none' }, tr), pointerEvents: 'none' }));
+  // franja del alero (vista "medida exterior")
+  kids.push(h('rect', { key: 'alero', x: x + ALERO / 2, y: y + ALERO / 2, width: L - ALERO, height: W - ALERO, rx: 8, fill: 'none', stroke: view === 'ext' ? 'rgba(25,195,230,.35)' : 'rgba(25,195,230,0)', strokeWidth: ALERO, style: tr, pointerEvents: 'none' }));
+  // borde exterior de la pileta (alero, bajo la loseta)
+  kids.push(h('rect', { key: 'ext', x, y, width: L, height: W, rx: 8, fill: 'none', stroke: view === 'ext' ? CEL : 'rgba(25,195,230,0)', strokeWidth: view === 'ext' ? fs * 0.16 : Math.max(1.5, fs * 0.05), strokeDasharray: `${fs * 0.4} ${fs * 0.22}`, style: Object.assign({ filter: view === 'ext' ? 'drop-shadow(0 0 8px rgba(25,195,230,.9))' : 'none' }, tr), pointerEvents: 'none' }));
+  // espejo de agua
+  kids.push(h('rect', { key: 'wt', x: wx, y: wy, width: WL, height: WW, rx: 10, fill: hex, stroke: view === 'agua' ? '#fff' : 'rgba(255,255,255,0)', strokeWidth: fs * 0.14, style: Object.assign({ filter: view === 'agua' ? 'drop-shadow(0 0 10px rgba(25,195,230,.95))' : 'none' }, tr, { transition: 'fill .5s ease, stroke .35s ease' }) }));
+  const sw = Math.min(32, WL * 0.08);
+  for (let i = 0; i < 3; i++) kids.push(h('rect', { key: 'st' + i, x: wx + i * sw, y: wy, width: sw, height: WW * 0.5, fill: '#fff', opacity: 0.32 - i * 0.09, rx: i === 0 ? 8 : 0 }));
+  if (sol) kids.push(h('rect', { key: 'sol', x: wx + WL * 0.76, y: wy, width: WL * 0.24, height: WW, fill: '#fff', opacity: 0.28, rx: 10 }));
+  kids.push(h('rect', { key: 'gl', x: wx, y: wy, width: WL, height: WW, rx: 10, fill: 'url(#gwplan)' }));
+  return h('g', Object.assign({ key: 'planpool' }, props || {}),
+    h('defs', { key: 'd' }, h('linearGradient', { id: 'gwplan', x1: 0, y1: 0, x2: 1, y2: 1 },
+      h('stop', { offset: '0%', stopColor: '#fff', stopOpacity: 0.45 }), h('stop', { offset: '55%', stopColor: '#fff', stopOpacity: 0.05 }), h('stop', { offset: '100%', stopColor: '#000', stopOpacity: 0.12 }))),
+    kids);
+}
 
 function poolG(k, x, y, L, W, hex, sol, props) {
   const c = Math.max(10, Math.min(16, W * 0.07));
@@ -670,27 +934,25 @@ const ICONS = {
 
 const SHOP = {
   pileta: [
-    { name: 'Cloro', desc: 'Granulado, líquido y en pastillas para la desinfección diaria.' },
-    { name: 'Clarificadores', desc: 'Para recuperar el agua turbia y dejarla cristalina.' },
-    { name: 'Alguicidas', desc: 'Previenen y eliminan algas y el agua verde.' },
-    { name: 'Medición de pH y cloro', desc: 'Kits y reactivos para controlar el agua en casa.' },
-    { name: 'Accesorios de limpieza', desc: 'Barrefondos, sacahojas, cepillos y mangueras.' },
-    { name: 'Filtros y bombas', desc: 'Equipos de filtrado, repuestos y arena para filtro.' }
-  ],
-  hogar: [
-    { name: 'Lavandina', desc: 'Para limpieza y desinfección de toda la casa.' },
-    { name: 'Detergentes', desc: 'Para vajilla y limpieza general.' },
-    { name: 'Desengrasantes', desc: 'Para cocina, parrilla y superficies difíciles.' },
-    { name: 'Limpiadores multiuso', desc: 'Pisos, baños y superficies.' },
-    { name: 'Jabón líquido y suavizante', desc: 'Para el lavado de ropa.' },
-    { name: 'Aromatizantes', desc: 'Desodorantes de ambiente y perfumes para pisos.' }
+    { name: 'Cloro', desc: 'Granulado, líquido, en pastillas y shock para la desinfección diaria.', slot: 'insumo-cloro', img: 'img/insumos/cloro.png', alt: 'Balde y envase de cloro granulado con pastillas de cloro', ph: 'Foto: balde de cloro granulado o pastillas' },
+    { name: 'Clarificadores', desc: 'Clarificadores y floculantes para recuperar el agua turbia y dejarla cristalina.', slot: 'insumo-clarificadores', img: 'img/insumos/clarificadores.png', alt: 'Bidón de clarificador con tapa celeste y gota de agua cristalina', ph: 'Foto: bidón de clarificador' },
+    { name: 'Alguicidas', desc: 'Previenen y eliminan algas y el agua verde.', slot: 'insumo-alguicidas', img: 'img/insumos/alguicidas.png', alt: 'Bidón de alguicida con tapa verde', ph: 'Foto: bidón de alguicida' },
+    { name: 'Medición de pH y cloro', desc: 'Kits y reactivos para controlar el agua en casa.', slot: 'insumo-medicion', img: 'img/insumos/medicion.png', alt: 'Kit medidor de pH y cloro con tubos de ensayo, reactivos y tiras reactivas', ph: 'Foto: kit medidor de pH y cloro' },
+    { name: 'Accesorios de limpieza', desc: 'Barrefondos, sacahojas, cepillos y mangueras.', slot: 'insumo-accesorios', img: 'img/insumos/accesorios.png', alt: 'Sacahojas, cepillo y barrefondo con mango telescópico y manguera enrollada', ph: 'Foto: barrefondo y sacahojas' },
+    { name: 'Filtros y bombas', desc: 'Equipos de filtrado, repuestos y arena para filtro.', slot: 'insumo-filtros', img: 'img/insumos/filtros.png', alt: 'Filtro de arena con válvula selectora y bomba de pileta', ph: 'Foto: filtro de arena con bomba' },
+    { name: 'Correctores de pH', desc: 'Reductor (pH menos) y elevador (pH más) para equilibrar el agua.', slot: 'insumo-correctores-ph', img: 'img/insumos/correctores-ph.png', alt: 'Botellas de reductor de pH y elevador de pH', ph: 'Foto: botellas de reductor y elevador de pH' },
+    { name: 'Estabilizantes', desc: 'Ácido cianúrico que protege el cloro del sol y alarga su duración.', slot: 'insumo-estabilizantes', img: 'img/insumos/estabilizantes.png', alt: 'Balde de estabilizante de cloro', ph: 'Foto: envase de estabilizante' }
+,
+    { name: 'Caños y extensibles', desc: 'Mangos telescópicos y caños extensibles para barrefondos, redes y cepillos.', slot: 'insumo-canos-extensibles', img: 'img/insumos/canos-extensibles.png', alt: 'Mangos telescópicos de aluminio, uno extendido y dos recogidos, con enganche universal', ph: 'Foto: mangos telescópicos' },
+    { name: 'Boyas y flotadores', desc: 'Flotadores dosificadores de cloro, boyas y flotadores para la pileta.', slot: 'insumo-boyas-flotadores', img: 'img/insumos/boyas-flotadores.png', alt: 'Flotador dosificador de cloro con pastillas junto a una boya redonda', ph: 'Foto: flotador dosificador y boya' },
+    { name: 'Repuestos y conexiones', desc: 'Caños, codos, uniones, mangueras y conexiones para el sistema de la pileta.', slot: 'insumo-repuestos-conexiones', img: 'img/insumos/repuestos-conexiones.png', alt: 'Caños de PVC, codo, unión y manguera enrollada con abrazaderas', ph: 'Foto: caños, codos y uniones' }
   ]
 };
 
 const FAQS = [
   { q: '¿Cuánto tarda la instalación?', a: 'Depende del modelo, del tipo de pileta (fibra u hormigón) y de las condiciones del terreno. Te damos el plazo estimado junto con el presupuesto. Plazo de referencia: a completar.' },
   { q: '¿Qué pasa si tengo poco patio?', a: 'La Mini Piscina M (3,50 × 2,00 m) viene con equipamiento completo instalado y lista para usar, y la Premium X300 mide 3,00 × 2,00 m. Probá el planificador de esta página: cargás las medidas de tu patio y ves qué modelos entran, a escala.' },
-  { q: '¿Qué diferencia hay entre EcoLine y Premium?', a: 'Son las dos líneas de piscinas de fibra que ofrecemos. EcoLine tiene Línea Clásica, Mini Piscina y Línea Solárium. Premium tiene Exclusivo, Rectas y Solárium. Podés filtrarlas en el catálogo.' },
+  { q: '¿Qué diferencia hay entre EcoLine y Premium?', a: 'Son las dos líneas de piscinas de fibra que ofrecemos. EcoLine tiene las familias Clásica, Solárium y Mini Piscina. Premium tiene Exclusivo, Rectas y Solárium. Podés filtrarlas en el catálogo.' },
   { q: '¿En qué colores vienen?', a: 'Según el catálogo, la línea ECO LINE está disponible en 4 colores y la línea PREMIUM en 2. Podés verlos en la ficha de cada modelo.' },
   { q: '¿Puedo instalar si alquilo?', a: 'Sí. Las minipiscinas son una opción pensada para quienes alquilan o tienen poco espacio. Consultanos por WhatsApp y vemos juntos cuál te conviene.' },
   { q: '¿Cómo cuido mi pileta?', a: 'Hacé funcionar el filtro todos los días, controlá el pH y el cloro con un kit de medición, limpiá el fondo con el barrefondos y sacá hojas con el sacahojas. En el local tenés todos los insumos y te asesoramos.' }
@@ -707,13 +969,14 @@ class Component extends DCLogic {
   state = {
     w: typeof window !== 'undefined' ? window.innerWidth : 1200,
     scrolled: false, menu: false,
-    colorIdx: { EcoLine: 0, Premium: 0 }, line: 'EcoLine', cat: 'Todas', sort: 'size-asc', fichaPhoto: 0,
+    colorIdx: { EcoLine: 0, Premium: 0 }, line: 'EcoLine', cat: 'Todas', sort: 'cat-asc', fichaPhoto: 0,
     patioL: 7, patioW: 4.5, planModel: 'p-m400', pos: null,
-    ficha: null, shop: 'pileta', faq: 0, ba: 50,
+    ficha: null, shopAll: false, faq: 0, ba: 50,
     form: { nombre: '', localidad: '', modelo: 'Todavía no sé', mensaje: '' }
   };
 
   componentDidMount() {
+    try { const c = JSON.parse(localStorage.getItem('acua-cart') || '{}'); if (c && typeof c === 'object') this.setState({ cart: c }); } catch (_) {}
     this._onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
     this._onResize = () => this.setState({ w: window.innerWidth });
     window.addEventListener('scroll', this._onScroll, { passive: true });
@@ -745,23 +1008,36 @@ class Component extends DCLogic {
   }
 
   model(id) { return MODELS.find(m => m.id === id) || MODELS.find(m => m.id === 'p-m400'); }
-  hex(m) { const line = (m || this.model(this.state.planModel)).line; return PALETTES[line][this.state.colorIdx[line] || 0]; }
-  colorsFor(line, dark) {
-    const pal = PALETTES[line], sel = this.state.colorIdx[line] || 0;
+  cIdx(m) { const o = (this.state.modelColor || {})[m.id]; return o != null ? o : (this.state.colorIdx[m.line] || 0); }
+  hex(m) { m = m || this.model(this.state.planModel); return PALETTES[m.line][this.cIdx(m)]; }
+  photoSrc(src, i) { return i && src.indexOf('img/cat/') === 0 ? src.replace('img/cat/', 'img/cat/c/').replace('.png', '-' + i + '.png') : src; }
+  setModelColor(id, i) { this.setState({ modelColor: { ...(this.state.modelColor || {}), [id]: i } }); }
+  // Aplica un color a un grupo de modelos (categoría visible o línea completa)
+  setGroupColor(line, models, i, wholeLine) {
+    const mc = { ...(this.state.modelColor || {}) };
+    models.forEach(m => { if (wholeLine) delete mc[m.id]; else mc[m.id] = i; });
+    const upd = { modelColor: mc };
+    if (wholeLine) upd.colorIdx = { ...this.state.colorIdx, [line]: i };
+    this.setState(upd);
+  }
+  colorsFor(line, dark, m) {
+    const pal = PALETTES[line], sel = m ? this.cIdx(m) : (this.state.colorIdx[line] || 0);
     return pal.map((hex, i) => ({
       hex, name: `Color ${i + 1} de ${pal.length}`,
-      pick: () => this.setState({ colorIdx: { ...this.state.colorIdx, [line]: i } }),
+      pick: m ? () => this.setModelColor(m.id, i) : () => this.setState({ colorIdx: { ...this.state.colorIdx, [line]: i } }),
       ring: i === sel ? (dark ? `0 0 0 3px ${CEL}` : `0 0 0 3px ${BLUE}, 0 6px 14px -4px rgba(10,42,94,.4)`) : (dark ? '0 0 0 1px rgba(255,255,255,.25)' : '0 0 0 1px rgba(10,42,94,.18)')
     }));
   }
-  colorLabel(line) { const n = PALETTES[line].length; return `Color ${(this.state.colorIdx[line] || 0) + 1} de ${n}`; }
+  colorLabel(line, m) { const n = PALETTES[line].length; return `Color ${(m ? this.cIdx(m) : (this.state.colorIdx[line] || 0)) + 1} de ${n}`; }
   dims() {
     const cl = (v, a, b) => Math.min(b, Math.max(a, isNaN(v) ? a : v));
-    return { PL: Math.round(cl(+this.state.patioL, 2, 30) * 100), PW: Math.round(cl(+this.state.patioW, 2, 30) * 100) };
+    return { PL: Math.round(cl(+this.state.patioL, 2, 40) * 100), PW: Math.round(cl(+this.state.patioW, 2, 40) * 100) };
   }
+  // Modelo con medidas según orientación (rotada = largo y ancho intercambiados)
+  planM() { const m = this.model(this.state.planModel); return this.state.planRot ? { ...m, L: m.W, W: m.L, rot: true, oL: m.L, oW: m.W } : m; }
   centered(m, PL, PW) { return { x: Math.round((PL - m.L) / 10) * 5, y: Math.round((PW - m.W) / 10) * 5 }; }
   pos() {
-    const m = this.model(this.state.planModel), { PL, PW } = this.dims();
+    const m = this.planM(), { PL, PW } = this.dims();
     return this.state.pos || this.centered(m, PL, PW);
   }
   toSvg(e) {
@@ -776,7 +1052,7 @@ class Component extends DCLogic {
   }
 
   buildPlan() {
-    const m = this.model(this.state.planModel), { PL, PW } = this.dims(), hex = this.hex(m);
+    const m = this.planM(), { PL, PW } = this.dims(), hex = this.hex(m);
     const M = 100, CW = Math.max(PL, m.L) + 2 * M, CH = Math.max(PW, m.W) + 2 * M;
     const p = this.pos();
     const fs = Math.max(20, Math.max(CW, CH) / 30);
@@ -786,13 +1062,13 @@ class Component extends DCLogic {
     for (let gx = -M; gx <= CW - M; gx += 100) grid.push(h('line', { key: 'gx' + gx, x1: gx, y1: -M, x2: gx, y2: CH - M, stroke: 'rgba(158,233,248,.14)', strokeWidth: fs * 0.06 }));
     for (let gy = -M; gy <= CH - M; gy += 100) grid.push(h('line', { key: 'gy' + gy, x1: -M, y1: gy, x2: CW - M, y2: gy, stroke: 'rgba(158,233,248,.14)', strokeWidth: fs * 0.06 }));
     const gaps = [
-      { k: 'l', v: p.x, x1: 0, y1: p.y + m.W / 2, x2: p.x, y2: p.y + m.W / 2 },
-      { k: 'r', v: PL - p.x - m.L, x1: p.x + m.L, y1: p.y + m.W / 2, x2: PL, y2: p.y + m.W / 2 },
-      { k: 't', v: p.y, x1: p.x + m.L / 2, y1: 0, x2: p.x + m.L / 2, y2: p.y },
-      { k: 'b', v: PW - p.y - m.W, x1: p.x + m.L / 2, y1: p.y + m.W, x2: p.x + m.L / 2, y2: PW }
+      { k: 'l', v: zx, x1: 0, y1: p.y + m.W / 2, x2: zx, y2: p.y + m.W / 2 },
+      { k: 'r', v: PL - zx - zw, x1: zx + zw, y1: p.y + m.W / 2, x2: PL, y2: p.y + m.W / 2 },
+      { k: 't', v: zy, x1: p.x + m.L / 2, y1: 0, x2: p.x + m.L / 2, y2: zy },
+      { k: 'b', v: PW - zy - zh, x1: p.x + m.L / 2, y1: zy + zh, x2: p.x + m.L / 2, y2: PW }
     ].filter(g => g.v >= fs * 2.2);
     const guide = gaps.map(g => {
-      const col = g.v < GAP ? '#FF8A93' : 'rgba(255,255,255,.75)';
+      const col = g.v < 0 ? '#FF8A93' : 'rgba(255,255,255,.75)';
       const tx = (g.x1 + g.x2) / 2, ty = (g.y1 + g.y2) / 2;
       return h('g', { key: 'gd' + g.k, pointerEvents: 'none' },
         h('line', { x1: g.x1, y1: g.y1, x2: g.x2, y2: g.y2, stroke: col, strokeWidth: fs * 0.07, strokeDasharray: `${fs * 0.3} ${fs * 0.25}` }),
@@ -821,14 +1097,43 @@ class Component extends DCLogic {
     },
       h('rect', { x: -M, y: -M, width: CW, height: CH, fill: '#0D3572' }),
       grid,
-      h('rect', { x: 0, y: 0, width: PL, height: PW, fill: 'rgba(158,233,248,.07)', stroke: '#fff', strokeWidth: fs * 0.14, rx: 4 }),
+      floorG(PL, PW, this.state.floor || 'plano', fs),
       h('text', { x: PL / 2, y: -fs * 0.9, fill: '#fff', fontSize: fs * 0.95, fontWeight: 800, textAnchor: 'middle', fontFamily: 'Archivo' }, 'Largo ' + m2(PL) + ' m'),
       h('text', { x: -fs * 0.9, y: PW / 2, fill: '#fff', fontSize: fs * 0.95, fontWeight: 800, textAnchor: 'middle', fontFamily: 'Archivo', transform: `rotate(-90 ${-fs * 0.9} ${PW / 2})` }, 'Ancho ' + m2(PW) + ' m'),
-      h('rect', { x: zx, y: zy, width: zw, height: zh, rx: 26, fill: bad ? 'rgba(228,32,46,.2)' : 'rgba(25,195,230,.1)', stroke: bad ? RED : CEL, strokeWidth: fs * 0.11, strokeDasharray: `${fs * 0.45} ${fs * 0.3}`, style: { transition: 'fill .3s, stroke .3s' }, pointerEvents: 'none' }),
       guide,
-      poolG('plan', p.x, p.y, m.L, m.W, hex, m.solarium, { onPointerDown: onDown, style: { cursor: this.state.dragging ? 'grabbing' : 'grab' } }),
-      h('text', { x: p.x + m.L / 2, y: p.y + m.W / 2 + fs * 0.35, fill: '#fff', fontSize: fs * 0.9, fontWeight: 900, textAnchor: 'middle', fontFamily: 'Archivo', pointerEvents: 'none', style: { paintOrder: 'stroke', stroke: 'rgba(10,42,94,.45)', strokeWidth: fs * 0.12 } }, m2(m.L) + ' × ' + m2(m.W))
+      m.rot
+        ? h('g', { key: 'rotg', transform: `rotate(90 ${p.x + m.L / 2} ${p.y + m.W / 2})` }, planPoolG(p.x + m.L / 2 - m.oL / 2, p.y + m.W / 2 - m.oW / 2, m.oL, m.oW, hex, m.solarium, fs, bad, { onPointerDown: onDown, style: { cursor: this.state.dragging ? 'grabbing' : 'grab' } }, this.state.planView || null))
+        : planPoolG(p.x, p.y, m.L, m.W, hex, m.solarium, fs, bad, { onPointerDown: onDown, style: { cursor: this.state.dragging ? 'grabbing' : 'grab' } }, this.state.planView || null),
+      this.state.planView ? [
+      h('text', { key: 'lbl', x: p.x + m.L / 2, y: p.y + m.W / 2 - fs * 0.05, fill: '#fff', fontSize: fs * 0.62, fontWeight: 800, letterSpacing: '.08em', textAnchor: 'middle', fontFamily: 'Archivo', pointerEvents: 'none', style: { paintOrder: 'stroke', stroke: 'rgba(10,42,94,.45)', strokeWidth: fs * 0.1 } }, this.planDims(m).find(d => d.id === this.state.planView).k.toUpperCase()),
+      h('text', { key: 'val', x: p.x + m.L / 2, y: p.y + m.W / 2 + fs * 0.85, fill: '#fff', fontSize: fs * 0.9, fontWeight: 900, textAnchor: 'middle', fontFamily: 'Archivo', pointerEvents: 'none', style: { paintOrder: 'stroke', stroke: 'rgba(10,42,94,.45)', strokeWidth: fs * 0.12 } }, this.planDims(m).find(d => d.id === this.state.planView).v)
+      ] : null
     );
+  }
+
+  modelLabel(m) { return LINE_LABEL[m.line] + ' · ' + m.cat + ' · ' + m.name + ' (' + m2(m.L) + ' × ' + m2(m.W) + ' m)'; }
+  // Lleva al formulario de presupuesto con el modelo (y opcionalmente un mensaje) precargado
+  goContact(modelo, mensaje) {
+    return e => {
+      if (e && e.preventDefault) e.preventDefault();
+      const form = { ...this.state.form };
+      if (modelo) form.modelo = modelo;
+      if (mensaje != null) form.mensaje = mensaje;
+      this.setState({ form, ficha: null, menu: false });
+      setTimeout(() => {
+        const el = document.getElementById('contacto');
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
+        setTimeout(() => { const n = document.getElementById('form-nombre'); if (n) n.focus({ preventScroll: true }); }, 700);
+      }, 30);
+    };
+  }
+
+  planDims(m) {
+    return [
+      { id: 'agua', k: 'Espejo de agua', v: m2(m.L - 2 * ALERO) + ' × ' + m2(m.W - 2 * ALERO) + ' m' },
+      { id: 'ext', k: 'Medida exterior', v: m2(m.L) + ' × ' + m2(m.W) + ' m' },
+      { id: 'los', k: 'Loseta a loseta aprox.', v: m2(m.L + 2 * GAP) + ' × ' + m2(m.W + 2 * GAP) + ' m' }
+    ];
   }
 
   lightbox() {
@@ -855,7 +1160,7 @@ class Component extends DCLogic {
   }
 
   desc(m) {
-    if (m.mini) return 'Con equipamiento completo instalado. ¡Lista para usar!';
+    if (m.mini) return m.cap ? 'Lista para usar · ' + lts(m.cap) + ' L · profundidad ' + m2(m.D) + ' m.' : 'Con equipamiento completo instalado. ¡Lista para usar!';
     const p = [];
     if (m.solarium) p.push('Con solárium' + (m.sol ? ' de ' + m.sol : ''));
     else p.push('Sin solárium');
@@ -865,7 +1170,7 @@ class Component extends DCLogic {
   }
 
   status() {
-    const m = this.model(this.state.planModel), { PL, PW } = this.dims(), p = this.pos();
+    const m = this.planM(), { PL, PW } = this.dims(), p = this.pos();
     const needL = m.L + 2 * GAP, needW = m.W + 2 * GAP;
     const fitsAll = PL >= needL && PW >= needW;
     const fitsPos = p.x - GAP >= 0 && p.y - GAP >= 0 && p.x + m.L + GAP <= PL && p.y + m.W + GAP <= PW;
@@ -875,27 +1180,29 @@ class Component extends DCLogic {
       const alt = [...MODELS].sort((a, b) => b.L * b.W - a.L * a.W).find(x => PL >= x.L + 2 * GAP && PW >= x.W + 2 * GAP);
       return Object.assign({}, badS, {
         title: 'No entra en tu patio',
-        text: `El ${m.name} necesita un terreno mínimo de ${m2(needL)} × ${m2(needW)} m.` + (alt ? ` En tu patio entra el ${alt.name}.` : ' Consultanos por una pileta de hormigón a medida.'),
+        text: `El ${m.name} necesita ${m2(needL)} × ${m2(needW)} m de loseta a loseta.` + (alt ? ` En tu patio entra el ${alt.name}.` : ' Consultanos por una pileta de hormigón a medida.'),
         hasSuggest: !!alt, suggestLabel: alt ? 'Probar con ' + alt.name : '',
         onSuggest: () => alt && this.setState({ planModel: alt.id, pos: null })
       });
     }
-    if (!fitsPos) return Object.assign({}, badS, { title: 'Se sale del espacio', text: 'La pileta entra, pero en esta posición no deja los 30 cm por lado. Arrastrala hacia adentro del patio.', hasSuggest: true, suggestLabel: 'Ubicar en el centro', onSuggest: () => this.setState({ pos: null }) });
-    return Object.assign({}, okS, { title: '¡Entra en tu patio!', text: `Terreno mínimo ${m2(needL)} × ${m2(needW)} m. Te queda libre ${m2(PL * PW / 100 - m.L * m.W / 100 | 0).replace(/,00$/, '')} m² aprox. de patio alrededor.`, hasSuggest: false, suggestLabel: '', onSuggest: null });
+    if (!fitsPos) return Object.assign({}, badS, { title: 'Se sale del espacio', text: 'La pileta entra, pero en esta posición la loseta se sale del patio. Arrastrala hacia adentro.', hasSuggest: true, suggestLabel: 'Ubicar en el centro', onSuggest: () => this.setState({ pos: null }) });
+    return Object.assign({}, okS, { title: '¡Entra en tu patio!', text: `Ocupa ${m2(needL)} × ${m2(needW)} m de loseta a loseta. Te quedan libres ${((PL * PW - needL * needW) / 10000).toFixed(1).replace('.', ',')} m² aprox. de patio.`, hasSuggest: false, suggestLabel: '', onSuggest: null });
   }
 
   renderVals() {
     const s = this.state, hex = this.hex(), isMobile = s.w < 1100;
     const navLinks = [
       { label: 'Catálogo', href: '#catalogo' }, { label: 'Tu patio', href: '#patio' }, { label: 'Proceso', href: '#proceso' },
-      { label: 'Obras', href: '#obras' }, { label: 'Insumos', href: '#insumos' }, { label: 'Contacto', href: '#contacto' }
+      { label: 'Obras', href: '#obras' }, { label: 'Insumos', href: '#insumos' }, { label: 'Dónde estamos', href: '#donde' }, { label: 'Contacto', href: '#contacto' }
     ];
     const lineDef = LINE_DEFS.find(l => l.id === s.line) || LINE_DEFS[0];
     const lineTabs = LINE_DEFS.map(l => {
       const on = l.id === lineDef.id;
       return {
         label: l.label, count: MODELS.filter(m => m.line === l.id).length + ' modelos', cats: l.cats.length + ' categorías',
-        colorsTxt: PALETTES[l.id].length + ' colores disponibles',
+        colorsTxt: PALETTES[l.id].length + ' colores disponibles', years: String(WARRANTY[l.id]),
+        wBg: on ? 'rgba(25,195,230,.14)' : '#F3F8FC', wBd: on ? 'rgba(25,195,230,.45)' : '#DCE9F5',
+        wIconBg: on ? '#19C3E6' : '#0A2A5E', wIconFg: on ? '#0A2A5E' : '#19C3E6', wNum: on ? '#19C3E6' : '#1565C0',
         dots: PALETTES[l.id].map(hx => ({ hex: hx })),
         pick: () => this.setState({ line: l.id, cat: 'Todas', showAll: false }),
         bg: on ? NAVY : '#fff', fg: on ? '#fff' : NAVY, sub: on ? 'rgba(255,255,255,.75)' : '#3C5477',
@@ -910,13 +1217,21 @@ class Component extends DCLogic {
       bg: s.cat === c ? '#19C3E6' : 'transparent', fg: NAVY, bd: s.cat === c ? '#19C3E6' : '#CFE2F5'
     }));
     const [key, dir] = s.sort.split('-');
+    const catOrder = m => lineDef.cats.indexOf(m.cat) * 100 + MODELS.indexOf(m);
     const list = inLineModels.filter(m => s.cat === 'Todas' || m.cat === s.cat)
       .sort((a, b) => {
-        if (key === 'size') return bySize(a, b);
+        if (key === 'cat') return catOrder(a) - catOrder(b);
         if (key === 'cap') { if (a.cap == null && b.cap == null) return a.L - b.L; if (a.cap == null) return 1; if (b.cap == null) return -1; return (a.cap - b.cap) * (dir === 'asc' ? 1 : -1); }
         return (a.L - b.L || a.W - b.W) * (dir === 'asc' ? 1 : -1);
       });
-    const lineColors = this.colorsFor(lineDef.id, false);
+    const pal = PALETTES[lineDef.id], whole = s.cat === 'Todas';
+    const groupSel = list.length && list.every(m => this.cIdx(m) === this.cIdx(list[0])) ? this.cIdx(list[0]) : -1;
+    const lineColors = pal.map((hx, i) => ({
+      hex: hx, name: `Color ${i + 1} de ${pal.length}`,
+      pick: () => this.setGroupColor(lineDef.id, whole ? inLineModels : list, i, whole),
+      ring: i === groupSel ? `0 0 0 3px ${BLUE}, 0 6px 14px -4px rgba(10,42,94,.4)` : '0 0 0 1px rgba(10,42,94,.18)'
+    }));
+    const groupLabel = whole ? 'Colores ' + lineDef.label : 'Colores ' + s.cat;
     const nColors = PALETTES[lineDef.id].length;
     const cols = Math.max(1, Math.floor((Math.min(s.w - 40, 1240) + 22) / 362));
     const limit = cols * 3, hasMore = list.length > limit;
@@ -927,11 +1242,12 @@ class Component extends DCLogic {
     };
     this._more = { hasMore, label: s.showAll ? 'Ver menos' : `Ver más piletas (${list.length - limit})`, toggleAll };
     const catalog = shown.map(m => ({
-      name: m.name, desc: this.desc(m), lineName: LINE_LABEL[m.line], catName: m.cat, photo: m.photos[0],
+      name: m.name, desc: this.desc(m), lineName: LINE_LABEL[m.line], catName: m.cat, warranty: 'Garantía ' + WARRANTY[m.line] + ' años', photo: this.photoSrc(m.photos[0], this.cIdx(m)),
+      cdots: PALETTES[m.line].map((hx, i) => ({ hex: hx, name: `Color ${i + 1} de ${PALETTES[m.line].length}`, pick: () => this.setModelColor(m.id, i), ring: i === this.cIdx(m) ? `0 0 0 2px #fff, 0 0 0 4px ${BLUE}` : '0 0 0 1px rgba(10,42,94,.25)' })),
       dims: m2(m.L) + ' × ' + m2(m.W) + ' m', depth: (m.D < 100 ? m.D + ' cm' : m2(m.D) + ' m'),
       capLabel: m.cap ? 'Capacidad' : 'Profundidad', cap: m.cap ? lts(m.cap) + ' L' : (m.D < 100 ? m.D + ' cm' : m2(m.D) + ' m'),
       colorsTxt: nColors + ' colores', dots: PALETTES[m.line].map(hx => ({ hex: hx })),
-      openFicha: () => this.setState({ ficha: m.id, fichaPhoto: 0 }), tryPlan: () => this.goPlan(m.id),
+      openFicha: () => this.setState({ ficha: m.id, fichaPhoto: 0 }), tryPlan: () => this.goPlan(m.id), goContact: this.goContact(this.modelLabel(m)),
       wa: wa(`Hola Acua Piscinas! Quiero información y presupuesto de la pileta ${LINE_LABEL[m.line]} · ${m.cat} · ${m.name}.`)
     }));
 
@@ -946,20 +1262,21 @@ class Component extends DCLogic {
       if (m.steps) specs.push({ k: 'Escalones', v: String(m.steps) });
       (m.extras || []).forEach(x => { const i = x.indexOf(':'); specs.push(i > 0 ? { k: x.slice(0, i), v: x.slice(i + 1).trim() } : { k: x, v: '✓' }); });
       specs.push({ k: 'Terreno mínimo sugerido', v: m2(m.L + 60) + ' × ' + m2(m.W + 60) + ' m' });
-      const gallery = [...m.photos.map(p => ({ src: p, cap: 'Imagen del catálogo' })), ...(m.img ? [{ src: m.img, cap: 'Instalación real · ' + (m.imgCaption || '') }] : [])];
+      const cIdx = this.cIdx(m);
+      const gallery = [...m.photos.map(p => ({ src: this.photoSrc(p, cIdx), cap: 'Imagen del catálogo · color ' + (cIdx + 1) + ' de ' + PALETTES[m.line].length })), ...(m.img ? [{ src: m.img, cap: 'Instalación real · ' + (m.imgCaption || '') }] : [])];
       const pi = Math.min(s.fichaPhoto || 0, gallery.length - 1), mhex = this.hex(m);
-      const cIdx = s.colorIdx[m.line] || 0;
       specs.unshift({ k: 'Línea', v: LINE_LABEL[m.line] }, { k: 'Categoría', v: m.cat });
       specs.push({ k: 'Colores disponibles', v: String(PALETTES[m.line].length) });
+      specs.push({ k: 'Garantía', v: WARRANTY[m.line] + ' años' });
       ficha = {
-        name: m.name, desc: this.desc(m), lineLabel: LINE_LABEL[m.line] + ' · ' + m.cat,
+        name: m.name, desc: this.desc(m), lineLabel: LINE_LABEL[m.line] + ' · ' + m.cat, warranty: WARRANTY[m.line] + ' años de garantía',
         svgBig: catalogSvg(m, mhex), photo: gallery[pi].src, photoCap: gallery[pi].cap,
         thumbs: gallery.map((g, i) => ({ src: g.src, pick: () => this.setState({ fichaPhoto: i }), bd: i === pi ? '#19C3E6' : '#DCE9F5' })),
         hasThumbs: gallery.length > 1,
-        colors: this.colorsFor(m.line, false), colorLabel: this.colorLabel(m.line),
-        photoNote: 'Foto de referencia: el catálogo no incluye fotografías de este modelo en cada color. El plano a escala muestra el color elegido.',
+        colors: this.colorsFor(m.line, false, m), colorLabel: this.colorLabel(m.line, m),
+        photoNote: 'El color se aplica solo a este modelo. La imagen es una representación del color sobre el render del catálogo.',
         specs: specs.map(x => ({ ...x, tag: '' })),
-        tryPlan: () => this.goPlan(m.id),
+        tryPlan: () => this.goPlan(m.id), goContact: this.goContact(this.modelLabel(m), `Color elegido: ${cIdx + 1} de ${PALETTES[m.line].length} del catálogo.`),
         wa: wa(`Hola Acua Piscinas! Quiero presupuesto de la pileta ${LINE_LABEL[m.line]} · ${m.cat} · ${m.name}, color ${cIdx + 1} de ${PALETTES[m.line].length} del catálogo.`)
       };
     }
@@ -974,10 +1291,41 @@ class Component extends DCLogic {
     }));
 
     const tints = ['#19C3E6', '#1565C0', '#5ED6F0', '#0A2A5E', '#19C3E6', '#1565C0'];
-    const shopItems = SHOP[s.shop].map((p, i) => ({ ...p, tint: tints[i], wa: wa(`Hola Acua Piscinas! Quería consultar por ${p.name.toLowerCase()}.`) }));
-    const shopTabs = [{ id: 'pileta', label: 'Para tu pileta' }, { id: 'hogar', label: 'Para tu hogar' }].map(t => ({
-      ...t, pick: () => this.setState({ shop: t.id }), bg: s.shop === t.id ? NAVY : 'transparent', fg: s.shop === t.id ? '#fff' : NAVY
-    }));
+    const cart = s.cart || {};
+    const setCart = c => { this.setState({ cart: c }); try { localStorage.setItem('acua-cart', JSON.stringify(c)); } catch (_) {} };
+    const keyOf = (g, n) => g + '|' + n;
+    const addQ = (k, d) => { const c = { ...(this.state.cart || {}) }; const q = (c[k] || 0) + d; if (q <= 0) delete c[k]; else c[k] = q; setCart(c); };
+    const SHOP_LIMIT = 8;
+    const shopList = s.shopAll ? SHOP.pileta : SHOP.pileta.slice(0, SHOP_LIMIT);
+    const shopItems = shopList.map((p, i) => {
+      const k = keyOf('pileta', p.name), q = cart[k] || 0, on = q > 0;
+      return { ...p, tint: tints[i % tints.length], on, qty: q, anim: i >= SHOP_LIMIT ? `acuaCardIn .5s cubic-bezier(.2,.7,.2,1) ${(i - SHOP_LIMIT) * 90}ms both` : 'none', hasPhoto: !!p.slot, noPhoto: !p.slot, slot: p.slot || '', ph: p.ph || '', img: p.img || '', alt: p.alt || p.name,
+        bg: on ? '#F0FAFE' : '#fff', bd: on ? '#19C3E6' : '#DCE9F5',
+        btnLabel: on ? 'Quitar' : '+ Agregar', btnBg: on ? 'transparent' : '#0A2A5E', btnFg: on ? '#E4202E' : '#fff',
+        toggle: () => { const c = { ...(this.state.cart || {}) }; if (c[k]) delete c[k]; else c[k] = 1; setCart(c); },
+        inc: () => addQ(k, 1), dec: () => addQ(k, -1) };
+    });
+    const GROUP = { pileta: 'Para tu pileta' };
+    const cartKeys = Object.keys(cart).filter(k => k.indexOf('pileta|') === 0);
+    const cartItems = cartKeys.map(k => { const [g, n] = k.split('|'); return { name: n, group: GROUP[g], qty: cart[k], inc: () => addQ(k, 1), dec: () => addQ(k, -1), remove: () => addQ(k, -cart[k]) }; });
+    const cartCount = cartItems.reduce((a, c) => a + c.qty, 0);
+    const cartMsg = 'Hola Acua Piscinas! Quiero consultar precio y promociones de:\n' +
+      cartItems.map(c => `• ${c.name} ×${c.qty}`).join('\n') +
+      ((s.cartName || '').trim() ? `\nNombre: ${s.cartName.trim()}` : '') +
+      ((s.cartNote || '').trim() ? `\nComentario: ${s.cartNote.trim()}` : '');
+    this._cart = {
+      cartBar: cartItems.length > 0 && !s.cartOpen, cartOpen: !!s.cartOpen, cartEmpty: cartItems.length === 0, cartItems,
+      cartCount: String(cartItems.length), cartTxt: cartItems.length === 1 ? 'producto seleccionado' : 'productos seleccionados',
+      openCart: () => this.setState({ cartOpen: true }), closeCart: () => this.setState({ cartOpen: false }),
+      cartWa: wa(cartMsg), cartName: s.cartName || '', cartNote: s.cartNote || '',
+      onCartName: e => this.setState({ cartName: e.target.value }), onCartNote: e => this.setState({ cartNote: e.target.value }),
+      cartSent: () => setTimeout(() => setCart({}), 300) && this.setState({ cartOpen: false })
+    };
+    const shopToggle = () => {
+      if (this.state.shopAll) { const el = document.getElementById('insumos'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' }); }
+      this.setState({ shopAll: !this.state.shopAll });
+    };
+    this._shopMore = { shopHasMore: SHOP.pileta.length > SHOP_LIMIT, shopExpanded: s.shopAll ? 'true' : 'false', shopMoreLabel: s.shopAll ? 'Ver menos' : 'Ver más insumos', shopArrowRot: s.shopAll ? 180 : 0, shopToggle };
 
     const baSet = e => {
       const r = e.currentTarget.getBoundingClientRect();
@@ -1037,10 +1385,15 @@ class Component extends DCLogic {
       bubbles, heroCard, waFab,
       waveHero: wave('transparent', '#fff', 0), waveCatalog: wave('#F3F8FC', NAVY, 1), wavePlan: wave(NAVY, '#fff', 2),
       waveProceso: wave('#fff', NAVY, 3), waveRenov: wave(NAVY, '#fff', 4), waveShop: wave('#F3F8FC', NAVY, 5),
-      waveFaq: wave(NAVY, '#fff', 6), waveContact: wave('#fff', NAVY, 7),
-      lineTabs, catChips, lineColors, lineColorLabel: this.colorLabel(lineDef.id), lineName: lineDef.label, nColors,
+      waveFaq: wave(NAVY, '#fff', 6), waveContact: wave('#F3F8FC', NAVY, 7),
+      lineTabs, catChips, lineColors, groupLabel, lineColorLabel: this.colorLabel(lineDef.id), lineName: lineDef.label, nColors,
       resultTxt: list.length === 1 ? '1 modelo' : list.length + ' modelos',
-      planColors: this.colorsFor(pm.line, true), planColorLabel: this.colorLabel(pm.line),
+      planDims: this.planDims(pm).map(d => {
+        const on = d.id === s.planView;
+        return { ...d, pick: () => this.setState({ planView: on ? null : d.id }), hl: on ? '#19C3E6' : 'rgba(255,255,255,.06)', fg: on ? '#0A2A5E' : '#fff', bd: on ? '#19C3E6' : 'rgba(255,255,255,.14)', shadow: on ? '0 12px 28px -12px rgba(25,195,230,.8)' : 'none' };
+      }),
+      planColors: this.colorsFor(pm.line, true, pm), planColorLabel: this.colorLabel(pm.line, pm),
+      floorOpts: FLOORS.map(fl => { const on = fl.id === (s.floor || 'plano'); return { ...fl, pick: () => this.setState({ floor: fl.id }), bg: on ? 'rgba(25,195,230,.16)' : 'rgba(255,255,255,.04)', bd: on ? '#19C3E6' : 'rgba(255,255,255,.18)', fg: on ? '#19C3E6' : '#fff' }; }),
       sorts: SORTS, sort: s.sort, onSort: e => this.setState({ sort: e.target.value }), catalog,
       hasMore: this._more.hasMore, moreLabel: this._more.label, toggleAll: this._more.toggleAll,
       ...this.lightbox(),
@@ -1049,6 +1402,7 @@ class Component extends DCLogic {
       planModel: s.planModel, onPlanModel: e => this.setState({ planModel: e.target.value, pos: null }),
       modelOptions: MODELS.map(m => ({ id: m.id, label: `${LINE_LABEL[m.line]} · ${m.name} · ${m2(m.L)} × ${m2(m.W)} m` })),
       planSvg: this.buildPlan(), status: this.status(), centerPool: () => this.setState({ pos: null }),
+      rotatePool: () => this.setState({ planRot: !s.planRot, pos: null }), rotLabel: s.planRot ? 'Vertical' : 'Horizontal',
       steps: [
         { n: '01', delay: 0, icon: ICONS.dig, title: 'Excavación', text: 'Marcamos el terreno según el modelo elegido y hacemos la excavación con las medidas exactas.' },
         { n: '02', delay: 120, icon: ICONS.pool, title: 'Colocación y filtrado', text: 'Colocamos y nivelamos la pileta, e instalamos el sistema de filtrado y sus conexiones.' },
@@ -1060,12 +1414,17 @@ class Component extends DCLogic {
       obras: OBRAS.map((o, i) => ({ ...o, delay: i * 90, rows: isMobile ? 'span 1' : o.rows, ph: o.ph || o.title, extras: o.extras || '', hasExtras: !!o.extras, hasPlace: !!o.place,
         hasImg: !!o.img, noImg: !o.img, cursor: o.img ? 'zoom-in' : 'default',
         open: () => { if (o.img) this.setState({ lb: OBRAS.filter(x => x.img).indexOf(o) }); } })),
-      shopTabs, shopItems, faqs,
-      form: s.form, formOptions: ['Todavía no sé', ...MODELS.map(m => m.name), 'Pileta de hormigón', 'Renovación símil Bali'],
+      shopItems, faqs, ...this._cart, ...this._shopMore,
+      form: s.form, formOptions: ['Todavía no sé', ...MODELS.map(m => this.modelLabel(m)), 'Pileta de hormigón', 'Renovación símil Bali'],
+      goContactGeneral: this.goContact(null), goContactHormigon: this.goContact('Pileta de hormigón'),
+      goContactRenov: this.goContact('Renovación símil Bali'),
+      goContactPlan: this.goContact(this.modelLabel(pm), `Mi patio mide ${m2(PL)} m de largo × ${m2(PW)} m de ancho (lo cargué en el planificador).`),
       onNombre: setForm('nombre'), onLocalidad: setForm('localidad'), onModelo: setForm('modelo'), onMensaje: setForm('mensaje'),
       onSubmit: e => {
         e.preventDefault(); const f = this.state.form;
-        const t = `Hola Acua Piscinas! Soy ${f.nombre || '-'}${f.localidad ? ', de ' + f.localidad : ''}. Me interesa: ${f.modelo}.${f.mensaje ? ' ' + f.mensaje : ''}`;
+        const miss = !f.nombre.trim() ? 'form-nombre' : !f.localidad.trim() ? 'form-localidad' : null;
+        if (miss) { const el = document.getElementById(miss); if (el) { el.focus(); el.reportValidity && el.reportValidity(); } return; }
+        const t = `Hola Acua Piscinas! Quiero pedir un presupuesto.\nNombre: ${f.nombre.trim()}\nLocalidad: ${f.localidad.trim()}\nModelo de interés: ${f.modelo}` + (f.mensaje.trim() ? `\nMensaje: ${f.mensaje.trim()}` : '');
         window.open(wa(t), '_blank');
       }
     };
